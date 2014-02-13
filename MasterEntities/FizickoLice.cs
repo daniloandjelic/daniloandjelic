@@ -14,7 +14,6 @@ namespace MasterEntities
     
     public partial class FizickoLice : Osoba
     {
-        public long Id { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public Nullable<System.DateTime> DatumRodjenja { get; set; }

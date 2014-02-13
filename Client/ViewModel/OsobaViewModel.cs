@@ -15,6 +15,7 @@ namespace Client.ViewModel
     public class OsobaViewModel : SwitchableViewModel, IPageViewModel
     {
         Assembly ass = null;
+
         public OsobaViewModel()
         {
             PageViewModels.Add(new FizickoLiceViewModel());
@@ -67,31 +68,6 @@ namespace Client.ViewModel
                 SwitchViewModel(currentOsobaType);
             }
         }
-
-        private ObservableCollection<FizickoLice> GetAllFizickaLica()
-        {
-            GenericDataAccessLayer<FizickoLice> dal = new GenericDataAccessLayer<FizickoLice>();
-            List<FizickoLice> collFl = dal.GetAll().ToList();
-            ObservableCollection<FizickoLice> oColl = new ObservableCollection<FizickoLice>();
-            collFl.ForEach(c => oColl.Add(c));
-            return oColl;
-        }
-
-        private ObservableCollection<PravnoLice> GetAllPravnaLica()
-        {
-            GenericDataAccessLayer<PravnoLice> dal = new GenericDataAccessLayer<PravnoLice>();
-            List<PravnoLice> collFl = dal.GetAll().ToList();
-            ObservableCollection<PravnoLice> oColl = new ObservableCollection<PravnoLice>();
-            collFl.ForEach(c => oColl.Add(c));
-            return oColl;
-        }
-
-        public override void FillChildViews(IPageViewModel CurrentPageViewModel)
-        {
-            if (CurrentPageViewModel is FizickoLiceViewModel)
-                (CurrentPageViewModel as FizickoLiceViewModel).ListOfFizickaLica = GetAllFizickaLica();
-            else if (CurrentPageViewModel is PravnoLiceViewModel)
-                (CurrentPageViewModel as PravnoLiceViewModel).ListOfPravnaLica = GetAllPravnaLica();
-        }
+       
     }
 }

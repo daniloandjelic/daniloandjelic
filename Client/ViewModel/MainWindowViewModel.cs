@@ -28,7 +28,7 @@ namespace Client.ViewModel
             get
             {
                 if (commandToSwitch == null)
-                    commandToSwitch = new RelayCommand(page => ChangeViewModel((IPageViewModel)page), page => page is IPageViewModel);
+                    commandToSwitch = new DelegateCommand(page => ChangeViewModel((IPageViewModel)page), page => page is IPageViewModel);
 
                 return commandToSwitch;
             }

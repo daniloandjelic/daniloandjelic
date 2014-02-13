@@ -8,6 +8,6 @@ namespace Client
 {
     public interface IPageViewModel
     {
-        string Name { get;  }
+        string Name { get; }
     }
 }

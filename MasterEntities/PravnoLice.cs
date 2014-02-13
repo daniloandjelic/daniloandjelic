@@ -14,11 +14,8 @@ namespace MasterEntities
     
     public partial class PravnoLice : Osoba
     {
-        public long Id { get; set; }
         public string PunoIme { get; set; }
         public Nullable<System.DateTime> DatumOsnivanja { get; set; }
         public string PIB { get; set; }
-    
-        public virtual Osoba Osoba { get; set; }
     }
 }

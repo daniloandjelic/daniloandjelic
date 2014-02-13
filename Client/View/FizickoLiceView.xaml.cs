@@ -23,9 +23,16 @@ namespace Client.View
     /// </summary>
     public partial class FizickoLiceView : UserControl
     {
+
+        FizickoLiceViewModel flmv = new FizickoLiceViewModel();
         public FizickoLiceView()
         {
             InitializeComponent();
+            this.Loaded += (s, e) =>
+            {
+                this.DataContext = flmv;
+            };        
+
         }
     }
 }

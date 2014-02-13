@@ -13,7 +13,7 @@ namespace Client
         {
             CurrentPageViewModel = null;
 
-            if (!string.IsNullOrEmpty(viewName))//&& CurrentOsobaType == currentOsobaType)
+            if (!string.IsNullOrEmpty(viewName))
             {
                 IPageViewModel pvm = PageViewModels.Where(page => page.GetType().Name == viewName + "ViewModel").Select(page => page).FirstOrDefault() as IPageViewModel;
 
@@ -43,13 +43,7 @@ namespace Client
                 PageViewModels.Add(viewModel);
 
             CurrentPageViewModel = PageViewModels.FirstOrDefault(vm => vm == viewModel);
-
-
-            FillChildViews(CurrentPageViewModel);
         }
-
-        public abstract void FillChildViews(IPageViewModel CurrentPageViewModel);
-
 
         public List<IPageViewModel> pageViewModels;
         public List<IPageViewModel> PageViewModels

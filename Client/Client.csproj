@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Helpers\EventFactory.cs" />
     <Compile Include="Helpers\GetAllOsobeEventArgs.cs" />
     <Compile Include="IPageViewModel.cs" />
@@ -135,6 +135,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">
+      <Project>{c4de22cd-2643-4f5d-88cc-0008097a5a9f}</Project>
+      <Name>BusinessLogicLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
       <Project>{a57d6e1a-e5ba-4c95-8498-f4e38427763a}</Project>
       <Name>DataAccessLayer</Name>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,16 +8,14 @@ using System.Windows.Input;
 
 namespace Client.Commands
 {
-    public class RelayCommand : ICommand
+    public class DelegateCommand : ICommand
     {
         readonly Action<object> _execute;
         readonly Predicate<object> _canExecute;
 
-        public RelayCommand(Action<object> execute) : this(execute, null)
-        {
-        }
+        public DelegateCommand(Action<object> execute) : this(execute, null){ }
 
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        public DelegateCommand(Action<object> execute, Predicate<object> canExecute)
         {
             if (execute == null)
                 throw new ArgumentNullException("execute");
@@ -30,7 +29,19 @@ namespace Client.Commands
             return this._canExecute == null ? true : _canExecute(parameters);
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add
+            {
+                if (_canExecute != null)
+                    CommandManager.RequerySuggested += value;
+            }
+            remove
+            {
+                if (_canExecute != null)
+                    CommandManager.RequerySuggested -= value;
+            }
+        }
 
         public void Execute(object parameters)
         {
