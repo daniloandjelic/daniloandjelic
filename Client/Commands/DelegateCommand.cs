@@ -1,4 +1,5 @@
-﻿using Client.ViewModel;
+﻿using Client.Framework;
+using Client.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,18 @@ namespace Client.Commands
             _canExecute = canExecute;
         }
 
+        IPageViewModel _currentViewModel;
+        public DelegateCommand(Action<object> execute, Predicate<object> canExecute, IPageViewModel currentViewModel)
+        {
+            if (execute == null)
+                throw new ArgumentNullException("execute");
+
+            _execute = execute;
+            _canExecute = canExecute;
+            _currentViewModel = currentViewModel;
+        }
+
+        [System.Diagnostics.DebuggerStepThrough]
         public bool CanExecute(object parameters)
         {
             return this._canExecute == null ? true : _canExecute(parameters);

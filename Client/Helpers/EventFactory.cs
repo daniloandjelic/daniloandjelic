@@ -12,7 +12,6 @@ namespace Client.Helpers
 {
     public class EventFactory
     {
-        //private const string SERVICE_ENDPOINT = "MasterApplicationServiceEndpoint";
 
         public EventFactory()
         {

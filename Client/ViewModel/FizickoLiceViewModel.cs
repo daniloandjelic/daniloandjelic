@@ -1,86 +1,45 @@
 ﻿using BusinessLogicLayer;
+using BusinessLogicLayer.Implementations;
 using Client.Commands;
-using DataAccessLayer;
+using Client.Framework;
+using Client.Windows;
 using MasterEntities;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Client.ViewModel
 {
-    public class FizickoLiceViewModel : ViewModelBase, IPageViewModel
+    public class FizickoLiceViewModel : SubmitViewModel, IPageViewModel
     {
-
-        public FizickoLiceViewModel()
-        {
-            RefreshAllFizickaLica();
-            UpdateCommand = new DelegateCommand(UpdateCommand_Execute, UpdateCommand_CanExecute);
-        }
-
-
-        public DelegateCommand UpdateCommand { get; private set; }              
-
-        private bool UpdateCommand_CanExecute(object obj)
-        {
-            return this.SelectedFizickoLice != null;
-        }
-
-        private void UpdateCommand_Execute(object obj)
-        {
-            if (obj != null && obj is FizickoLice)
-            {
-                IBusinessLayerFacade<FizickoLice> flBusiness = new BusinessLayerImplementation();
-                flBusiness.Update(obj as FizickoLice);
-            }
-        }
-
-        private void RefreshAllFizickaLica()
-        {
-            ListOfFizickaLica = GetAllFizickaLica();
-        }
-        private ObservableCollection<FizickoLice> listOfFizickaLica;
-        public ObservableCollection<FizickoLice> ListOfFizickaLica
-        {
-            get
-            {
-                return listOfFizickaLica;
-            }
-            set
-            {
-                listOfFizickaLica = value;
-                this.OnPropertyChanged("ListOfFizickaLica");
-            }
-        }
-
-        private FizickoLice selectedFizickoLice;
-        public FizickoLice SelectedFizickoLice
-        {
-            get
-            {
-                return selectedFizickoLice;
-            }
-            set
-            {
-                selectedFizickoLice = value;
-                this.OnPropertyChanged("SelectedFizickoLice");
-            }
-        }
-
         public string Name
         {
-            get { return "Fizicko lice"; }
+            get { return "Unos novog Fizickog lica"; }
         }
 
-        private ObservableCollection<FizickoLice> GetAllFizickaLica()
+        public override bool SubmitCommand_CanExecute(object obj)
         {
-            GenericDataAccessLayer<FizickoLice> dal = new GenericDataAccessLayer<FizickoLice>();
-            List<FizickoLice> collFl = dal.GetAll().ToList();
-            ObservableCollection<FizickoLice> oColl = new ObservableCollection<FizickoLice>();
-            collFl.ForEach(c => oColl.Add(c));
-            return oColl;
+            FizickoLice fl = obj as FizickoLice;
+            if (fl != null)
+                return true;
+            return false;
         }
+
+        public override void SubmitCommand_Execute(object obj)
+        {
+            // TODO - Pozvati u drugom thread-u da vrti progress bar
+            // Treba dodati u DAL da vraca poruku/bool uspesnosti operacije pa na nju da se bindujem za progress bar
+            // kada zavrsi progress bar, onda pozvati CloseWindow
+            FizickoLice fl = obj as FizickoLice;
+            IBusinessLayerFacade<FizickoLice> bl = new FizickoLiceBusinessLayerImplementation();
+            if (fl.Id != 0)
+                bl.Update(fl);
+            else
+                bl.Create(fl);
+        }
+
     }
 }

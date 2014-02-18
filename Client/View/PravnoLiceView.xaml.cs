@@ -1,5 +1,4 @@
-﻿using Client.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,14 +20,9 @@ namespace Client.View
     /// </summary>
     public partial class PravnoLiceView : UserControl
     {
-        PravnoLiceViewModel plvm = new PravnoLiceViewModel();
         public PravnoLiceView()
         {
             InitializeComponent();
-            this.Loaded += (s, e) =>
-            {
-                this.DataContext = plvm;
-            };
         }
     }
 }

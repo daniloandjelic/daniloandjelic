@@ -7,20 +7,25 @@ using System.Threading.Tasks;
 using DataAccessLayer;
 using System.Data;
 
-namespace BusinessLogicLayer
+namespace BusinessLogicLayer.Implementations
 {
-    public class BusinessLayerImplementation : AbstractBusinessRuleChecker<FizickoLice>
+    public class FizickoLiceBusinessLayerImplementation : AbstractBusinessRuleChecker<FizickoLice>
     {
         public override void CheckBusinessRuleToDelete(FizickoLice objToDelete)
         {
-            throw new NotImplementedException();
+            if (objToDelete != null)
+            {
+                IGenericDataAccessLayer<FizickoLice> dal = new GenericDataAccessLayer<FizickoLice>();
+                FizickoLice dbFl = dal.GetEntity(fl => fl.Id == objToDelete.Id);
+                if (dbFl != null)
+                    dal.Delete(objToDelete);
+            }
         }
 
         public override void CheckBusinessRuleToUpdate(FizickoLice objToUpdate)
         {
             if (objToUpdate != null)
             {
-                //if exists
                 IGenericDataAccessLayer<FizickoLice> dal = new GenericDataAccessLayer<FizickoLice>();
                 FizickoLice dbFl = dal.GetEntity(fl => fl.Id == objToUpdate.Id);
                 if (dbFl != null)
@@ -30,7 +35,12 @@ namespace BusinessLogicLayer
 
         public override void CheckBusinessRuleToCreate(FizickoLice objToCreate)
         {
-            throw new NotImplementedException();
+            if (objToCreate != null)
+            {
+                IGenericDataAccessLayer<Osoba> dal = new GenericDataAccessLayer<Osoba>();
+                objToCreate.Id = dal.GetAll(null).Max(f => f.Id) + 1;
+                dal.Create(objToCreate);
+            }
         }
     }
 }

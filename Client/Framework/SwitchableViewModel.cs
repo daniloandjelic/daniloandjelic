@@ -1,11 +1,12 @@
 ﻿using Client.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client
+namespace Client.Framework
 {
     public abstract class SwitchableViewModel : ViewModelBase
     {
@@ -33,7 +34,6 @@ namespace Client
                     currentPageViewModel = value;
                     this.OnPropertyChanged("CurrentPageViewModel");
                 }
-
             }
         }
 
@@ -45,7 +45,7 @@ namespace Client
             CurrentPageViewModel = PageViewModels.FirstOrDefault(vm => vm == viewModel);
         }
 
-        public List<IPageViewModel> pageViewModels;
+        private List<IPageViewModel> pageViewModels;
         public List<IPageViewModel> PageViewModels
         {
             get
@@ -57,5 +57,6 @@ namespace Client
             }
         }
 
+        public virtual void RefreshCollectionOnPage() { }
     }
 }

@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:view="clr-namespace:Client.View"
+                    xmlns:vm="clr-namespace:Client.ViewModel"
+                    xmlns:local="clr-namespace:Client">
+    <DataTemplate DataType="{x:Type vm:FizickoLiceListViewModel}">
+        <view:FizickoLiceListView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:PravnoLiceListViewModel}">
+        <view:PravnoLiceListView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+        <view:HomeView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:OsobaViewModel}">
+        <view:OsobaView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:FizickoLiceViewModel}">
+        <view:FizickoLiceView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:PravnoLiceViewModel}">
+        <view:PravnoLiceView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NewUpdateViewModel}">
+        <view:NewUpdateView/>
+    </DataTemplate>
+</ResourceDictionary>

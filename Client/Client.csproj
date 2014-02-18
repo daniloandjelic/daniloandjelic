@@ -34,10 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,15 +58,28 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Converters\TitleConverter.cs" />
+    <Compile Include="Framework\CollectionViewModel.cs" />
+    <Compile Include="Framework\PersistableViewModel.cs" />
+    <Compile Include="Framework\SubmitViewModel.cs" />
+    <Compile Include="Framework\SwitchablePage.cs" />
     <Compile Include="Helpers\EventFactory.cs" />
     <Compile Include="Helpers\GetAllOsobeEventArgs.cs" />
-    <Compile Include="IPageViewModel.cs" />
-    <Compile Include="SwitchableViewModel.cs" />
+    <Compile Include="Framework\IPageViewModel.cs" />
+    <Compile Include="Framework\SwitchableViewModel.cs" />
+    <Compile Include="ViewModel\BusinessLayerImplementation.cs" />
+    <Compile Include="ViewModel\FizickoLiceListViewModel.cs" />
     <Compile Include="ViewModel\FizickoLiceViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\WindowViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\NewUpdateViewModel.cs" />
+    <Compile Include="ViewModel\WindowViewModels\NewWindowViewModel.cs" />
     <Compile Include="ViewModel\OsobaViewModel.cs" />
+    <Compile Include="ViewModel\PravnoLiceListViewModel.cs" />
+    <Compile Include="Framework\ViewModelBase.cs" />
     <Compile Include="ViewModel\PravnoLiceViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\FizickoLiceListView.xaml.cs">
+      <DependentUpon>FizickoLiceListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FizickoLiceView.xaml.cs">
       <DependentUpon>FizickoLiceView.xaml</DependentUpon>
     </Compile>
@@ -72,12 +87,33 @@
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\HomeViewModel.cs" />
+    <Compile Include="View\NewUpdateView.xaml.cs">
+      <DependentUpon>NewUpdateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OsobaView.xaml.cs">
       <DependentUpon>OsobaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PravnoLiceListView.xaml.cs">
+      <DependentUpon>PravnoLiceListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PravnoLiceView.xaml.cs">
       <DependentUpon>PravnoLiceView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\NewWindow.xaml.cs">
+      <DependentUpon>NewWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Resources\PresentationTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FizickoLiceListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\FizickoLiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,7 +122,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -94,15 +130,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\MainWindow.xaml.cs">
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\NewUpdateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\OsobaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PravnoLiceListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PravnoLiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\NewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

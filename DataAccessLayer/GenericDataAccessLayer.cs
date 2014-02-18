@@ -69,10 +69,10 @@ namespace DataAccessLayer
 
         public virtual void Create(params T[] objectsToCreate)
         {
-            Update(EntityState.Detached , objectsToCreate);
+            Update(EntityState.Added, objectsToCreate);
         }
 
-        public virtual void Update(EntityState entityState , params T[] objectsToUpdate)
+        public virtual void Update(EntityState entityState, params T[] objectsToUpdate)
         {
             using (var ctx = new MasterApp1Entities())
             {
@@ -83,18 +83,17 @@ namespace DataAccessLayer
                     dbSet.Add(ob);
                     foreach (DbEntityEntry<T> item in ctx.ChangeTracker.Entries<T>())
                     {
-                        //IEntity ent = item as T;
-
-                        if (entityState != null)
+                        if (item != null)
                             item.State = entityState;
                     }
                 }
+                ctx.SaveChanges();
             }
         }
 
         public virtual void Delete(params T[] objectsToDelete)
         {
-            Update(EntityState.Deleted ,objectsToDelete);
+            Update(EntityState.Deleted, objectsToDelete);
         }
     }
 }

@@ -1,27 +1,18 @@
 ﻿using Client.Commands;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Client.ViewModel
+namespace Client.Framework
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class SwitchablePage : Client.ViewModel.ViewModelBase
     {
         private ICommand commandToSwitch;
         private IPageViewModel currentPageViewModel;
         private List<IPageViewModel> pageViewModels;
-
-        public MainWindowViewModel()
-        {
-            PageViewModels.Add(new HomeViewModel());
-            PageViewModels.Add(new OsobaViewModel());
-            CurrentPageViewModel = pageViewModels[0];
-        }
-
 
         public ICommand CommandToSwitch
         {
@@ -55,7 +46,6 @@ namespace Client.ViewModel
                     currentPageViewModel = value;
                     this.OnPropertyChanged("CurrentPageViewModel");
                 }
-
             }
         }
 
@@ -66,5 +56,6 @@ namespace Client.ViewModel
 
             CurrentPageViewModel = PageViewModels.FirstOrDefault(vm => vm == viewModel);
         }
+
     }
 }

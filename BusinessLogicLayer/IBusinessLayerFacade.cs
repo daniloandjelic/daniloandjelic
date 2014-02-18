@@ -10,6 +10,6 @@ namespace BusinessLogicLayer
     {
         void Create(T objToCreate);
         void Update(T objToUpdate);
-        void Delete(T objToUpdate);
+        void Delete(T objToDelete);
     }
 }

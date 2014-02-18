@@ -1,4 +1,5 @@
-﻿using Client.Helpers;
+﻿using Client.Framework;
+using Client.Helpers;
 using DataAccessLayer;
 using MasterEntities;
 using System;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Client.ViewModel
 {
@@ -16,11 +18,16 @@ namespace Client.ViewModel
     {
         Assembly ass = null;
 
-        public OsobaViewModel()
+        public Window _mainWindow;
+
+        public bool IsViewSelected = true;
+
+        public OsobaViewModel(Window mainWindow)
         {
-            PageViewModels.Add(new FizickoLiceViewModel());
-            PageViewModels.Add(new PravnoLiceViewModel());
+            PageViewModels.Add(new FizickoLiceListViewModel());
+            PageViewModels.Add(new PravnoLiceListViewModel());
             ass = Assembly.Load("MasterEntities");
+            this._mainWindow = mainWindow;
             RefreshOsobaTypes();
         }
 
@@ -65,7 +72,8 @@ namespace Client.ViewModel
             {
                 currentOsobaType = value;
                 OnPropertyChanged("CurrentOsobaType");
-                SwitchViewModel(currentOsobaType);
+                SwitchViewModel(currentOsobaType+"List");
+                (this.CurrentPageViewModel as SwitchableViewModel).RefreshCollectionOnPage();
             }
         }
        

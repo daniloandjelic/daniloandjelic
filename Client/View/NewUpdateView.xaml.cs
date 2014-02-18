@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Client.View
 {
     /// <summary>
-    /// Interaction logic for FizickoLiceView.xaml
+    /// Interaction logic for NewUpdateView.xaml
     /// </summary>
-    public partial class FizickoLiceView : UserControl
+    public partial class NewUpdateView : UserControl
     {
-        public FizickoLiceView()
+        public NewUpdateView()
         {
             InitializeComponent();
         }

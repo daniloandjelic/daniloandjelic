@@ -5,47 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid TextElement.Foreground="DarkBlue" TextElement.FontSize="16">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="1" Margin="5" 
-                  AutoGenerateColumns="False"
-				  ItemsSource="{Binding ListOfPravnaLica}"
-				  >
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=Naziv}"
-									Header="Naziv"/>
-                <DataGridTextColumn Binding="{Binding Path=VremeKreiranja}"
-									Header="Vreme Kreiranja"/>
-                <DataGridTextColumn Binding="{Binding Path=IdentifikacioniBroj}"
-									Header="Identifikacioni Broj"/>
-            </DataGrid.Columns>
-        </DataGrid>
 
-        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="180">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <TextBlock Text="Naziv:" />
+        <TextBox Text="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.Naziv, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" Grid.Column="1" />
 
-            <TextBlock Text="Naziv: " />
-            <TextBox Text="{Binding Path=PravnoLice.Naziv, Mode=TwoWay}" Grid.Column="1" />
+        <TextBlock Text="Identifikacioni Broj:" Grid.Row="1" />
+        <TextBox Text="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.IdentifikacioniBroj, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" />
 
-            <TextBlock Text="Identifikacioni broj: " Grid.Row="1" />
-            <TextBox Text="{Binding Path=PravnoLice.IdentifikacioniBroj, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" />
-        </Grid>
+        <TextBlock Text="Vreme Kreiranja:" Grid.Row="2" />
+        <TextBox Text="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.VremeKreiranja, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}"  Grid.Column="1" Grid.Row="2" />
+
     </Grid>
 </UserControl>

@@ -15,18 +15,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Client.View
+namespace Client.Windows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        MainWindowViewModel main = new MainWindowViewModel();
 
+        MainWindowViewModel main;
         public MainWindow()
         {
             InitializeComponent();
+            main = new MainWindowViewModel(this);
             this.Loaded += (s, e) =>
                 {
                     this.DataContext = this.main;

@@ -1,54 +1,40 @@
-﻿using DataAccessLayer;
+﻿using BusinessLogicLayer;
+using BusinessLogicLayer.Implementations;
+using Client.Commands;
+using Client.Framework;
+using Client.Windows;
 using MasterEntities;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Client.ViewModel
 {
-    public class PravnoLiceViewModel : ViewModelBase, IPageViewModel
+    public class PravnoLiceViewModel : SubmitViewModel, IPageViewModel
     {
-
-        public PravnoLiceViewModel()
-        {
-            RefreshPravnaLica();
-        }
-
-        private void RefreshPravnaLica()
-        {
-            ListOfPravnaLica = GetAllPravnaLica();
-        }
-        private ObservableCollection<PravnoLice> listOfPravnaLica;
-        public ObservableCollection<PravnoLice> ListOfPravnaLica
-        {
-            get
-            {
-                return listOfPravnaLica;
-            }
-            set
-            {
-                listOfPravnaLica = value;
-                this.OnPropertyChanged("ListOfPravnaLica");
-            }
- 
-        }
-
         public string Name
         {
-            get { return "Pravna lica"; }
+            get { return "Unos/izmena pravnog lica"; }
         }
 
-
-        private ObservableCollection<PravnoLice> GetAllPravnaLica()
+        public override bool SubmitCommand_CanExecute(object obj)
         {
-            GenericDataAccessLayer<PravnoLice> dal = new GenericDataAccessLayer<PravnoLice>();
-            List<PravnoLice> collFl = dal.GetAll().ToList();
-            ObservableCollection<PravnoLice> oColl = new ObservableCollection<PravnoLice>();
-            collFl.ForEach(c => oColl.Add(c));
-            return oColl;
+            PravnoLice pl = obj as PravnoLice;
+            if (pl != null)
+                return true;
+            return false;
+        }
+
+        public override void SubmitCommand_Execute(object obj)
+        {
+            PravnoLice pl = obj as PravnoLice;
+            IBusinessLayerFacade<PravnoLice> bl = new PravnoLiceBusinessLayerImplementation();
+            if (pl.Id != 0)
+                bl.Update(pl);
+            else
+                bl.Create(pl);
         }
     }
 }

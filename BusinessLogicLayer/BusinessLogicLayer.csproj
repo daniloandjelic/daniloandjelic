@@ -41,8 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractBusinessRuleChecker.cs" />
-    <Compile Include="BusinessLayerImplementation.cs" />
+    <Compile Include="Implementations\FizickoLiceBusinessLayerImplementation.cs" />
     <Compile Include="IBusinessLayerFacade.cs" />
+    <Compile Include="Implementations\PravnoLiceBusinessLayerImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
