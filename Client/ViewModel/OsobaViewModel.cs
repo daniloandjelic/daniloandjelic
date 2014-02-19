@@ -20,8 +20,6 @@ namespace Client.ViewModel
 
         public Window _mainWindow;
 
-        public bool IsViewSelected = true;
-
         public OsobaViewModel(Window mainWindow)
         {
             PageViewModels.Add(new FizickoLiceListViewModel());
