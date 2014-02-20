@@ -36,7 +36,7 @@ namespace Client.ViewModel
 
         public override void DeleteCommand_Execute(object obj)
         {
-            MessageBoxResult result = MessageBox.Show(deleteMessage, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show(deleteMessage, "Potvrdite svoju akciju", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 IBusinessLayerFacade<FizickoLice> flDelete = new FizickoLiceBusinessLayerImplementation();
