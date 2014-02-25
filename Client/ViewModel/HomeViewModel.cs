@@ -15,5 +15,13 @@ namespace Client.ViewModel
                 return "Početna strana";
             }
         }
+
+        public string Icon
+        {
+            get
+            {
+                return "Images/home.png";
+            }
+        }
     }
 }

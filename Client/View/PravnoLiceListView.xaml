@@ -23,7 +23,7 @@
             <ListView.View>
                 <GridView>
                         <GridViewColumn Header="Naziv"  DisplayMemberBinding="{Binding Naziv}"/>
-                        <GridViewColumn Header="Vreme Kreiranja" DisplayMemberBinding="{Binding VremeKreiranja}"/>
+                    <GridViewColumn Header="Vreme Kreiranja" DisplayMemberBinding="{Binding VremeKreiranja, StringFormat='dd.MM.yyyy'}"/>
                         <GridViewColumn Header="Identifikacioni Broj" DisplayMemberBinding="{Binding IdentifikacioniBroj}"/>
                 </GridView>
             </ListView.View>

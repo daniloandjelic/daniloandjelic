@@ -311,9 +311,13 @@
     </Style>
 
     <!--ListBox-->
+    <!--<Image Source="Images/home.png" />-->
 
     <DataTemplate x:Key="listBoxTemplate">
         <DockPanel Height="80" Width="160">
+            <Border Margin="4,5,0,0" Height="32" Width="32" VerticalAlignment="Top">
+                <Image Source="{Binding Icon}" />
+            </Border>
         </DockPanel>
     </DataTemplate>
 

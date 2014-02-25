@@ -16,6 +16,14 @@ namespace Client.ViewModel
 {
     public class OsobaViewModel : SwitchableViewModel, IPageViewModel
     {
+        public string Icon
+        {
+            get
+            {
+                return "Images/users.png";
+            }
+        }
+
         Assembly ass = null;
 
         public Window _mainWindow;
