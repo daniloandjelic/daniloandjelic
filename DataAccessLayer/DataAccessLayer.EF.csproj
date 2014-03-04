@@ -84,9 +84,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MasterEntities\MasterEntities.csproj">
+    <ProjectReference Include="..\MasterEntities\MasterEntities.EF.csproj">
       <Project>{290fc036-5ecd-4261-94d1-7b2683ce03c5}</Project>
-      <Name>MasterEntities</Name>
+      <Name>MasterEntities.EF</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

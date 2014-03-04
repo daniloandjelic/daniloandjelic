@@ -9,9 +9,17 @@
           <EntitySet Name="FizickoLice" EntityType="MasterApp1Model.Store.FizickoLice" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Osoba" EntityType="MasterApp1Model.Store.Osoba" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PravnoLice" EntityType="MasterApp1Model.Store.PravnoLice" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_FizickoLice_Majka" Association="MasterApp1Model.Store.FK_FizickoLice_Majka">
+            <End Role="FizickoLice" EntitySet="FizickoLice" />
+            <End Role="FizickoLice1" EntitySet="FizickoLice" />
+          </AssociationSet>
           <AssociationSet Name="FK_FizickoLice_Osoba" Association="MasterApp1Model.Store.FK_FizickoLice_Osoba">
             <End Role="Osoba" EntitySet="Osoba" />
             <End Role="FizickoLice" EntitySet="FizickoLice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FizickoLice_Otac" Association="MasterApp1Model.Store.FK_FizickoLice_Otac">
+            <End Role="FizickoLice" EntitySet="FizickoLice" />
+            <End Role="FizickoLice1" EntitySet="FizickoLice" />
           </AssociationSet>
           <AssociationSet Name="FK_PravnoLice_Osoba" Association="MasterApp1Model.Store.FK_PravnoLice_Osoba">
             <End Role="Osoba" EntitySet="Osoba" />
@@ -27,6 +35,8 @@
           <Property Name="Prezime" Type="varchar" MaxLength="50" />
           <Property Name="DatumRodjenja" Type="datetime" />
           <Property Name="Pol" Type="varchar" MaxLength="10" />
+          <Property Name="OtacId" Type="bigint" />
+          <Property Name="MajkaId" Type="bigint" />
         </EntityType>
         <EntityType Name="Osoba">
           <Key>
@@ -49,6 +59,18 @@
           <Property Name="DatumOsnivanja" Type="datetime" />
           <Property Name="PIB" Type="varchar" MaxLength="20" />
         </EntityType>
+        <Association Name="FK_FizickoLice_Majka">
+          <End Role="FizickoLice" Type="MasterApp1Model.Store.FizickoLice" Multiplicity="0..1" />
+          <End Role="FizickoLice1" Type="MasterApp1Model.Store.FizickoLice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FizickoLice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FizickoLice1">
+              <PropertyRef Name="MajkaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FizickoLice_Osoba">
           <End Role="Osoba" Type="MasterApp1Model.Store.Osoba" Multiplicity="1" />
           <End Role="FizickoLice" Type="MasterApp1Model.Store.FizickoLice" Multiplicity="0..1" />
@@ -58,6 +80,18 @@
             </Principal>
             <Dependent Role="FizickoLice">
               <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FizickoLice_Otac">
+          <End Role="FizickoLice" Type="MasterApp1Model.Store.FizickoLice" Multiplicity="0..1" />
+          <End Role="FizickoLice1" Type="MasterApp1Model.Store.FizickoLice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FizickoLice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FizickoLice1">
+              <PropertyRef Name="OtacId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -79,12 +113,24 @@
       <Schema Namespace="MasterApp1Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="MasterApp1Entities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Osoba" EntityType="MasterApp1Model.Osoba" />
+          <AssociationSet Name="FK_FizickoLice_Majka" Association="MasterApp1Model.FK_FizickoLice_Majka">
+            <End Role="FizickoLice" EntitySet="Osoba" />
+            <End Role="FizickoLice1" EntitySet="Osoba" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FizickoLice_Otac" Association="MasterApp1Model.FK_FizickoLice_Otac">
+            <End Role="FizickoLice" EntitySet="Osoba" />
+            <End Role="FizickoLice1" EntitySet="Osoba" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="FizickoLice" BaseType="MasterApp1Model.Osoba">
           <Property Name="Ime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Prezime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="DatumRodjenja" Type="DateTime" Precision="3" />
           <Property Name="Pol" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="OtacId" Type="Int64" />
+          <Property Name="MajkaId" Type="Int64" />
+          <NavigationProperty Name="Majka" Relationship="MasterApp1Model.FK_FizickoLice_Majka" FromRole="FizickoLice1" ToRole="FizickoLice" />
+          <NavigationProperty Name="Otac" Relationship="MasterApp1Model.FK_FizickoLice_Otac" FromRole="FizickoLice1" ToRole="FizickoLice" />
         </EntityType>
         <EntityType Name="Osoba">
           <Key>
@@ -103,6 +149,30 @@
           <Property Name="DatumOsnivanja" Type="DateTime" Precision="3" />
           <Property Name="PIB" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
         </EntityType>
+        <Association Name="FK_FizickoLice_Majka">
+          <End Type="MasterApp1Model.FizickoLice" Role="FizickoLice" Multiplicity="0..1" />
+          <End Type="MasterApp1Model.FizickoLice" Role="FizickoLice1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FizickoLice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FizickoLice1">
+              <PropertyRef Name="MajkaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FizickoLice_Otac">
+          <End Type="MasterApp1Model.FizickoLice" Role="FizickoLice" Multiplicity="0..1" />
+          <End Type="MasterApp1Model.FizickoLice" Role="FizickoLice1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FizickoLice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FizickoLice1">
+              <PropertyRef Name="OtacId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -123,6 +193,8 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(MasterApp1Model.FizickoLice)">
               <MappingFragment StoreEntitySet="FizickoLice">
+                <ScalarProperty Name="MajkaId" ColumnName="MajkaId" />
+                <ScalarProperty Name="OtacId" ColumnName="OtacId" />
                 <ScalarProperty Name="Pol" ColumnName="Pol" />
                 <ScalarProperty Name="DatumRodjenja" ColumnName="DatumRodjenja" />
                 <ScalarProperty Name="Prezime" ColumnName="Prezime" />

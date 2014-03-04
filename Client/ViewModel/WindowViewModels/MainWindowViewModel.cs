@@ -17,6 +17,7 @@ namespace Client.ViewModel
         {
             PageViewModels.Add(new HomeViewModel());
             PageViewModels.Add(new OsobaViewModel(mainWindow));
+            PageViewModels.Add(new RecursiveViewModel());
             CurrentPageViewModel = PageViewModels[0];
         }        
     }

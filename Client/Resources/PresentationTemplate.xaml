@@ -17,7 +17,7 @@
 
     <!-- Background -->
     <SolidColorBrush x:Key="BaseColor" Color="#5E72F7"></SolidColorBrush>
-<!--textbox color-->
+    <!--textbox color-->
     <SolidColorBrush x:Key="TextBoxBase" Color="#5F82F5"></SolidColorBrush>
 
     <!-- Glass -->
@@ -29,7 +29,7 @@
         <GradientStop Offset="0" Color="AliceBlue"></GradientStop>
         <GradientStop Offset="1" Color="#11000000"></GradientStop>
     </LinearGradientBrush>
-    
+
     <!-- Glow FX-->
     <RadialGradientBrush x:Key="GlowFX" GradientOrigin=".5,1" Center=".5,1">
         <GradientStop Offset="0" Color="#990000FF"></GradientStop>
@@ -68,7 +68,7 @@
         <DoubleAnimation x:Name="AnimGlow" BeginTime="00:00:00" Storyboard.TargetName="GlowRectangle" Duration="00:00:00.250" From="0" To="1" Storyboard.TargetProperty="Opacity">
         </DoubleAnimation>
     </Storyboard>
-    
+
     <!--Window control-->
     <!--TODO - Window title-->
     <!--<ControlTemplate x:Key="WindowControlTemplate" TargetType="{x:Type Window}">
@@ -459,6 +459,7 @@
     <Style TargetType="{x:Type ComboBox}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="true"></Setter>
@@ -480,7 +481,7 @@
             ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
             Margin="3,3,23,3"
             VerticalAlignment="Center"
-            HorizontalAlignment="Left" />
+            HorizontalAlignment="Center" />
 
                         <TextBox x:Name="PART_EditableTextBox" FontSize="25" HorizontalAlignment="Stretch" Foreground="White" VerticalAlignment="Stretch" Margin="1,1,23,1" Focusable="True" Visibility="Hidden" IsReadOnly="{TemplateBinding ComboBox.IsReadOnly}"/>
                         <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
@@ -552,6 +553,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
+    
 </ResourceDictionary>

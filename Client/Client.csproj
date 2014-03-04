@@ -63,19 +63,25 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\DelegateCommand.cs" />
-    <Compile Include="Converters\DateConverter.cs" />
+    <Compile Include="Converters\ComboBoxItemConverter.cs" />
+    <Compile Include="Converters\RecursiveComboBoxConverter.cs" />
     <Compile Include="Converters\TitleConverter.cs" />
     <Compile Include="Framework\CollectionViewModel.cs" />
     <Compile Include="Framework\PersistableViewModel.cs" />
     <Compile Include="Framework\SubmitViewModel.cs" />
     <Compile Include="Framework\SwitchablePage.cs" />
-    <Compile Include="Helpers\EventFactory.cs" />
-    <Compile Include="Helpers\GetAllOsobeEventArgs.cs" />
+    <Compile Include="Helpers\Enums.cs" />
     <Compile Include="Framework\IPageViewModel.cs" />
     <Compile Include="Framework\SwitchableViewModel.cs" />
+    <Compile Include="Helpers\GlobalVariables.cs" />
     <Compile Include="ViewModel\BusinessLayerImplementation.cs" />
+    <Compile Include="ViewModel\ChildParentViewModel.cs" />
     <Compile Include="ViewModel\FizickoLiceListViewModel.cs" />
     <Compile Include="ViewModel\FizickoLiceViewModel.cs" />
+    <Compile Include="ViewModel\HierarchicalViewTemplate\ChildsViewModel.cs" />
+    <Compile Include="Framework\TreeViewItemViewModel.cs" />
+    <Compile Include="ViewModel\RecursiveViewModel.cs" />
+    <Compile Include="ViewModel\StartingViewModel.cs" />
     <Compile Include="ViewModel\WindowViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\NewUpdateViewModel.cs" />
     <Compile Include="ViewModel\WindowViewModels\NewWindowViewModel.cs" />
@@ -83,6 +89,10 @@
     <Compile Include="ViewModel\PravnoLiceListViewModel.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />
     <Compile Include="ViewModel\PravnoLiceViewModel.cs" />
+    <Compile Include="ViewModel\WindowViewModels\StartingWindowViewModel.cs" />
+    <Compile Include="View\ChildParentView.xaml.cs">
+      <DependentUpon>ChildParentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FizickoLiceListView.xaml.cs">
       <DependentUpon>FizickoLiceListView.xaml</DependentUpon>
     </Compile>
@@ -105,14 +115,27 @@
     <Compile Include="View\PravnoLiceView.xaml.cs">
       <DependentUpon>PravnoLiceView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\RecursiveView.xaml.cs">
+      <DependentUpon>RecursiveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StartingView.xaml.cs">
+      <DependentUpon>StartingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\NewWindow.xaml.cs">
       <DependentUpon>NewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StartingWindow.xaml.cs">
+      <DependentUpon>StartingWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\PresentationTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChildParentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,6 +150,14 @@
     <Page Include="View\HomeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RecursiveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StartingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -157,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\NewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\StartingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,13 +229,13 @@
       <Project>{c4de22cd-2643-4f5d-88cc-0008097a5a9f}</Project>
       <Name>BusinessLogicLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.EF.csproj">
       <Project>{a57d6e1a-e5ba-4c95-8498-f4e38427763a}</Project>
-      <Name>DataAccessLayer</Name>
+      <Name>DataAccessLayer.EF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MasterEntities\MasterEntities.csproj">
+    <ProjectReference Include="..\MasterEntities\MasterEntities.EF.csproj">
       <Project>{290fc036-5ecd-4261-94d1-7b2683ce03c5}</Project>
-      <Name>MasterEntities</Name>
+      <Name>MasterEntities.EF</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +243,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\circle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

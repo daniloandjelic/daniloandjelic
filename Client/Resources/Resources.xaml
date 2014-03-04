@@ -24,4 +24,13 @@
     <DataTemplate DataType="{x:Type vm:NewUpdateViewModel}">
         <view:NewUpdateView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:StartingViewModel}">
+        <view:StartingView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:RecursiveViewModel}">
+        <view:RecursiveView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ChildParentViewModel}">
+        <view:ChildParentView/>
+    </DataTemplate>
 </ResourceDictionary>

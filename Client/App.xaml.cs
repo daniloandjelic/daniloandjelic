@@ -18,8 +18,11 @@ namespace Client
         {
             base.OnStartup(e);
 
-            MainWindow mv = new MainWindow();
-            mv.Show();
+            //MainWindow mv = new MainWindow();
+            //mv.Show();
+
+            StartingWindow sw = new StartingWindow();
+            sw.Show();
         }
         
     }

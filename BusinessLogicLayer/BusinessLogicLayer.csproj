@@ -47,13 +47,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.EF.csproj">
       <Project>{a57d6e1a-e5ba-4c95-8498-f4e38427763a}</Project>
-      <Name>DataAccessLayer</Name>
+      <Name>DataAccessLayer.EF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MasterEntities\MasterEntities.csproj">
+    <ProjectReference Include="..\MasterEntities\MasterEntities.EF.csproj">
       <Project>{290fc036-5ecd-4261-94d1-7b2683ce03c5}</Project>
-      <Name>MasterEntities</Name>
+      <Name>MasterEntities.EF</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,15 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:converters="clr-namespace:Client.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="300">
-
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <converters:DateConverter x:Key="dateC"/>
-        </ResourceDictionary>
-    </UserControl.Resources>
 
     <Grid TextElement.Foreground="DarkBlue" TextElement.FontSize="16">
         <Grid.RowDefinitions>
@@ -39,14 +32,10 @@
         <TextBox Text="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.Prezime, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" />
 
         <TextBlock Text="JMBG:" Grid.Row="2" />
-        <TextBox Text="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.JMBG, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" />
+        <TextBox Text="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.IdentifikacioniBroj, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" />
         
         <TextBlock Text="Datum rodjenja:" Grid.Row="3"/>
-        <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.JMBG, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}">
-            <DatePicker.Text>
-                <Binding Path="DataContext.CurrentPageViewModel.ObjectToPersist.DatumRodjenja" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource dateC}"/>
-            </DatePicker.Text>
-
+        <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.DatumRodjenja, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}">
         </DatePicker>
 
 

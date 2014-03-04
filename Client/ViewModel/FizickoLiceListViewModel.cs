@@ -61,12 +61,10 @@ namespace Client.ViewModel
             CollectionItems = GetAllFizickaLica();
         }
 
-
-
         private ObservableCollection<object> GetAllFizickaLica()
         {
             GenericDataAccessLayer<FizickoLice> dal = new GenericDataAccessLayer<FizickoLice>();
-            List<FizickoLice> collFl = dal.GetAll().ToList();
+            List<FizickoLice> collFl = dal.GetAll(f=> f.Majka, f => f.Otac).ToList();
             ObservableCollection<object> oColl = new ObservableCollection<object>();
             collFl.ForEach(c => oColl.Add(c));
             return oColl;
