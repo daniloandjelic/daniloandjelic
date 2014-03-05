@@ -50,6 +50,7 @@
     <Compile Include="Osoba.cs">
       <DependentUpon>MasterApplication1Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partial\Osoba.cs" />
     <Compile Include="PravnoLice.cs">
       <DependentUpon>MasterApplication1Model.tt</DependentUpon>
     </Compile>
@@ -63,6 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MasterEntities.Common\MasterEntities.Common.csproj">
+      <Project>{228ba78d-5d8f-41b8-b2d2-f67f3f5ec100}</Project>
+      <Name>MasterEntities.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

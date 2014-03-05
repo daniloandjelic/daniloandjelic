@@ -8,16 +8,20 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data;
+using DataAccessLayer.Factory;
+using Common.Helpers;
 
 namespace DataAccessLayer
 {
     public class GenericDataAccessLayer<T> : IGenericDataAccessLayer<T> where T : class
     {
+        IContextFactory contextFactory = new ContextFactory(GlobalVariables.Instance.dbConnection);
+
         public virtual IList<T> GetAll(params Expression<Func<T, object>>[] navigationProperties)
         {
             IList<T> result = null;
 
-            using (var contx = new MasterEntities.MasterApp1Entities())
+            using (var contx = contextFactory.GenerateContext())
             {
                 IQueryable<T> dbQuery = contx.Set<T>();
 
@@ -54,7 +58,7 @@ namespace DataAccessLayer
         public virtual T GetEntity(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties)
         {
             T result = null;
-            using (var contx = new MasterApp1Entities())
+            using (var contx = contextFactory.GenerateContext())
             {
                 IQueryable<T> dbQuery = contx.Set<T>();
 
@@ -74,7 +78,7 @@ namespace DataAccessLayer
 
         public virtual void Update(EntityState entityState, params T[] objectsToUpdate)
         {
-            using (var ctx = new MasterApp1Entities())
+            using (var ctx = contextFactory.GenerateContext())
             {
                 DbSet<T> dbSet = ctx.Set<T>();
 

@@ -38,7 +38,13 @@ namespace BusinessLogicLayer.Implementations
             if (objToCreate != null)
             {
                 IGenericDataAccessLayer<Osoba> dal = new GenericDataAccessLayer<Osoba>();
-                objToCreate.Id = dal.GetAll(null).Max(f => f.Id) + 1;
+                List<Osoba> returnList = dal.GetAll(null).ToList();
+                long id = 1;
+
+                if(returnList != null && returnList.Count() > 0)
+                    id = returnList.Max(f => f.Id) + 1;
+
+                objToCreate.Id = id;
                 dal.Create(objToCreate);
             }
         }

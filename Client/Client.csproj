@@ -70,10 +70,8 @@
     <Compile Include="Framework\PersistableViewModel.cs" />
     <Compile Include="Framework\SubmitViewModel.cs" />
     <Compile Include="Framework\SwitchablePage.cs" />
-    <Compile Include="Helpers\Enums.cs" />
     <Compile Include="Framework\IPageViewModel.cs" />
     <Compile Include="Framework\SwitchableViewModel.cs" />
-    <Compile Include="Helpers\GlobalVariables.cs" />
     <Compile Include="ViewModel\BusinessLayerImplementation.cs" />
     <Compile Include="ViewModel\ChildParentViewModel.cs" />
     <Compile Include="ViewModel\FizickoLiceListViewModel.cs" />
@@ -229,13 +227,25 @@
       <Project>{c4de22cd-2643-4f5d-88cc-0008097a5a9f}</Project>
       <Name>BusinessLogicLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{c5178e78-1f29-489c-a8a7-6cf4129e993f}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.EF.csproj">
       <Project>{a57d6e1a-e5ba-4c95-8498-f4e38427763a}</Project>
       <Name>DataAccessLayer.EF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MasterEntities\MasterEntities.EF.csproj">
+    <ProjectReference Include="..\MasterEntities.TPC\MasterEntities.TPC.csproj">
+      <Project>{fc16d052-aef0-4aa4-8048-c2a0bce511c8}</Project>
+      <Name>MasterEntities.TPC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterEntities.TPH\MasterEntities.TPH.csproj">
+      <Project>{042e7443-2c42-404d-9031-407a5f48d3fc}</Project>
+      <Name>MasterEntities.TPH</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterEntities\MasterEntities.TPT.csproj">
       <Project>{290fc036-5ecd-4261-94d1-7b2683ce03c5}</Project>
-      <Name>MasterEntities.EF</Name>
+      <Name>MasterEntities.TPT</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

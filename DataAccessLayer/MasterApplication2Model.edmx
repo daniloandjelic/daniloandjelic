@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MasterEntities.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="MasterEntitiesStoreContainer">
+          <EntitySet Name="FizickoLice" EntityType="MasterEntities.Store.FizickoLice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PravnoLice" EntityType="MasterEntities.Store.PravnoLice" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_FizickoLice_Majka" Association="MasterEntities.Store.FK_FizickoLice_Majka">
+            <End Role="FizickoLice" EntitySet="FizickoLice" />
+            <End Role="FizickoLice1" EntitySet="FizickoLice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FizickoLice_Otac" Association="MasterEntities.Store.FK_FizickoLice_Otac">
+            <End Role="FizickoLice" EntitySet="FizickoLice" />
+            <End Role="FizickoLice1" EntitySet="FizickoLice" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FizickoLice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" />
+          <Property Name="VremeKreiranja" Type="datetime" />
+          <Property Name="Rezident" Type="bit" />
+          <Property Name="IdentifikacioniBroj" Type="varchar" MaxLength="20" />
+          <Property Name="Jezik" Type="varchar" MaxLength="20" />
+          <Property Name="Ime" Type="varchar" MaxLength="50" />
+          <Property Name="Prezime" Type="varchar" MaxLength="50" />
+          <Property Name="DatumRodjenja" Type="datetime" />
+          <Property Name="Pol" Type="varchar" MaxLength="10" />
+          <Property Name="OtacId" Type="bigint" />
+          <Property Name="MajkaId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="PravnoLice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" />
+          <Property Name="VremeKreiranja" Type="datetime" />
+          <Property Name="Rezident" Type="bit" />
+          <Property Name="IdentifikacioniBroj" Type="varchar" MaxLength="20" />
+          <Property Name="Jezik" Type="varchar" MaxLength="20" />
+          <Property Name="PunoIme" Type="varchar" MaxLength="10" />
+          <Property Name="DatumOsnivanja" Type="datetime" />
+          <Property Name="PIB" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_FizickoLice_Majka">
+          <End Role="FizickoLice" Type="MasterEntities.Store.FizickoLice" Multiplicity="0..1" />
+          <End Role="FizickoLice1" Type="MasterEntities.Store.FizickoLice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FizickoLice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FizickoLice1">
+              <PropertyRef Name="MajkaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FizickoLice_Otac">
+          <End Role="FizickoLice" Type="MasterEntities.Store.FizickoLice" Multiplicity="0..1" />
+          <End Role="FizickoLice1" Type="MasterEntities.Store.FizickoLice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FizickoLice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FizickoLice1">
+              <PropertyRef Name="OtacId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MasterEntities" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MasterApp2Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="OsobaSet" EntityType="MasterEntities.Osoba" />
+          <AssociationSet Name="FK_FizickoLice_Majka" Association="MasterEntities.FK_FizickoLice_Majka">
+            <End Role="FizickoLice" EntitySet="OsobaSet" />
+            <End Role="FizickoLice1" EntitySet="OsobaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FizickoLice_Otac" Association="MasterEntities.FK_FizickoLice_Otac">
+            <End Role="FizickoLice" EntitySet="OsobaSet" />
+            <End Role="FizickoLice1" EntitySet="OsobaSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FizickoLice" BaseType="MasterEntities.Osoba">
+          <Property Name="Ime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DatumRodjenja" Type="DateTime" Precision="3" />
+          <Property Name="Pol" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Type="Int64" Name="OtacId" />
+          <Property Type="Int64" Name="MajkaId" />
+          <NavigationProperty Name="Majka" Relationship="MasterEntities.FK_FizickoLice_Majka" FromRole="FizickoLice1" ToRole="FizickoLice" />
+          <NavigationProperty Name="Otac" Relationship="MasterEntities.FK_FizickoLice_Otac" FromRole="FizickoLice1" ToRole="FizickoLice" />
+        </EntityType>
+        <EntityType Name="PravnoLice" BaseType="MasterEntities.Osoba">
+          <Property Name="PunoIme" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="DatumOsnivanja" Type="DateTime" Precision="3" />
+          <Property Name="PIB" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Osoba" Abstract="true" >
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Naziv" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="VremeKreiranja" Precision="3" />
+          <Property Type="Boolean" Name="Rezident" />
+          <Property Type="String" Name="IdentifikacioniBroj" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Jezik" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_FizickoLice_Majka">
+          <End Type="MasterEntities.FizickoLice" Role="FizickoLice" Multiplicity="0..1" />
+          <End Type="MasterEntities.FizickoLice" Role="FizickoLice1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FizickoLice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FizickoLice1">
+              <PropertyRef Name="MajkaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FizickoLice_Otac">
+          <End Type="MasterEntities.FizickoLice" Role="FizickoLice" Multiplicity="0..1" />
+          <End Type="MasterEntities.FizickoLice" Role="FizickoLice1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FizickoLice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FizickoLice1">
+              <PropertyRef Name="OtacId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MasterEntitiesStoreContainer" CdmEntityContainer="MasterApp2Entities">
+          <EntitySetMapping Name="OsobaSet">
+            <EntityTypeMapping TypeName="IsTypeOf(MasterEntities.FizickoLice)">
+              <MappingFragment StoreEntitySet="FizickoLice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="VremeKreiranja" ColumnName="VremeKreiranja" />
+                <ScalarProperty Name="Rezident" ColumnName="Rezident" />
+                <ScalarProperty Name="IdentifikacioniBroj" ColumnName="IdentifikacioniBroj" />
+                <ScalarProperty Name="Jezik" ColumnName="Jezik" />
+                <ScalarProperty Name="Pol" ColumnName="Pol" />
+                <ScalarProperty Name="DatumRodjenja" ColumnName="DatumRodjenja" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="MajkaId" ColumnName="MajkaId" />
+                <ScalarProperty Name="OtacId" ColumnName="OtacId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(MasterEntities.PravnoLice)">
+              <MappingFragment StoreEntitySet="PravnoLice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="VremeKreiranja" ColumnName="VremeKreiranja" />
+                <ScalarProperty Name="Rezident" ColumnName="Rezident" />
+                <ScalarProperty Name="IdentifikacioniBroj" ColumnName="IdentifikacioniBroj" />
+                <ScalarProperty Name="Jezik" ColumnName="Jezik" />
+                <ScalarProperty Name="PIB" ColumnName="PIB" />
+                <ScalarProperty Name="DatumOsnivanja" ColumnName="DatumOsnivanja" />
+                <ScalarProperty Name="PunoIme" ColumnName="PunoIme" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

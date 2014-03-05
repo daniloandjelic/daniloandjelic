@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dbe71466d45e4f3485bd107bd11635df" Name="Diagram1">
+        <EntityTypeShape EntityType="MasterEntities.FizickoLice" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasterEntities.PravnoLice" Width="1.5" PointX="9.875" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasterEntities.Osoba" Width="1.5" PointX="7.25" PointY="1" />
+        <InheritanceConnector EntityType="MasterEntities.FizickoLice" />
+        <InheritanceConnector EntityType="MasterEntities.PravnoLice" />
+        <AssociationConnector Association="MasterEntities.FK_FizickoLice_Majka" />
+        <AssociationConnector Association="MasterEntities.FK_FizickoLice_Otac" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

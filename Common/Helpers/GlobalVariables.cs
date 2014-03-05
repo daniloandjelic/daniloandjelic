@@ -1,15 +1,15 @@
-﻿using Client.Helpers.Enums;
+﻿using Common.Helpers.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.Helpers
+namespace Common.Helpers
 {
     public class GlobalVariables
     {
-        public DatabaseConnections dbConnection { get; set; }
+        public DatabaseConnection dbConnection { get; set; }
         public DataAccess dAccess { get; set; }
 
         private static GlobalVariables m_Instance;
@@ -24,7 +24,7 @@ namespace Client.Helpers
             }
         }
 
-        public void SetVariables(DatabaseConnections DbConn, DataAccess dataAccess)
+        public void SetVariables(DatabaseConnection DbConn, DataAccess dataAccess)
         {
             dbConnection = DbConn;
             dAccess = dataAccess;

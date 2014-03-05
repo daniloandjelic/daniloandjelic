@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.Helpers.Enums
+namespace Common.Helpers.Enums
 {
-    public enum DatabaseConnections
+    public enum DatabaseConnection
     {
         MasterApp1,
         MasterApp2,

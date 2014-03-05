@@ -1,12 +1,12 @@
 ﻿using Client.Framework;
 using Client.Windows;
-using Client.Helpers.Enums;
+using Common.Helpers.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Client.Helpers;
+using Common.Helpers;
 
 namespace Client.ViewModel
 {
@@ -25,10 +25,10 @@ namespace Client.ViewModel
             mw.Show();
         }
 
-        #region DatabaseConnections properties
+        #region DatabaseConnection properties
 
-        private DatabaseConnections databaseConnection;
-        public DatabaseConnections DatabaseConnection
+        private DatabaseConnection databaseConnection;
+        public DatabaseConnection DatabaseConnection
         {
             get { return this.databaseConnection; }
             set
@@ -45,20 +45,20 @@ namespace Client.ViewModel
 
         public bool IsMasterApp1
         {
-            get { return DatabaseConnection == DatabaseConnections.MasterApp1; }
-            set { DatabaseConnection = value ? DatabaseConnections.MasterApp1 : DatabaseConnection; }
+            get { return DatabaseConnection == DatabaseConnection.MasterApp1; }
+            set { DatabaseConnection = value ? DatabaseConnection.MasterApp1 : DatabaseConnection; }
         }
 
         public bool IsMasterApp2
         {
-            get { return DatabaseConnection == DatabaseConnections.MasterApp2; }
-            set { DatabaseConnection = value ? DatabaseConnections.MasterApp2 : DatabaseConnection; }
+            get { return DatabaseConnection == DatabaseConnection.MasterApp2; }
+            set { DatabaseConnection = value ? DatabaseConnection.MasterApp2 : DatabaseConnection; }
         }
 
         public bool IsMasterApp3
         {
-            get { return DatabaseConnection == DatabaseConnections.MasterApp3; }
-            set { DatabaseConnection = value ? DatabaseConnections.MasterApp3 : DatabaseConnection; }
+            get { return DatabaseConnection == DatabaseConnection.MasterApp3; }
+            set { DatabaseConnection = value ? DatabaseConnection.MasterApp3 : DatabaseConnection; }
         }
         #endregion
 

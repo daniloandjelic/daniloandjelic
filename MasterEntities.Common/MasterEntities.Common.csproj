@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C4DE22CD-2643-4F5D-88CC-0008097A5A9F}</ProjectGuid>
+    <ProjectGuid>{228BA78D-5D8F-41B8-B2D2-F67F3F5EC100}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogicLayer</RootNamespace>
-    <AssemblyName>BusinessLogicLayer</AssemblyName>
+    <RootNamespace>MasterEntities.Common</RootNamespace>
+    <AssemblyName>MasterEntities.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,7 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,21 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractBusinessRuleChecker.cs" />
-    <Compile Include="Implementations\FizickoLiceBusinessLayerImplementation.cs" />
-    <Compile Include="IBusinessLayerFacade.cs" />
-    <Compile Include="Implementations\PravnoLiceBusinessLayerImplementation.cs" />
+    <Compile Include="IDomainObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.EF.csproj">
-      <Project>{a57d6e1a-e5ba-4c95-8498-f4e38427763a}</Project>
-      <Name>DataAccessLayer.EF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MasterEntities\MasterEntities.TPT.csproj">
-      <Project>{290fc036-5ecd-4261-94d1-7b2683ce03c5}</Project>
-      <Name>MasterEntities.TPT</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

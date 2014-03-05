@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContextFactory\ContextFactory.cs" />
+    <Compile Include="ContextFactory\IContextFactory.cs" />
     <Compile Include="GenericDataAccessLayer.cs" />
     <Compile Include="IGenericDataAccessLayer.cs" />
     <Compile Include="MasterApplication1Model.Context.cs">
@@ -58,6 +60,26 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MasterApplication1Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterApplication2Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterApplication2Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterApplication2Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterApplication2Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterApplication3Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterApplication3Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterApplication3Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterApplication3Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,15 +100,51 @@
     <None Include="MasterApplication1Model.edmx.diagram">
       <DependentUpon>MasterApplication1Model.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="MasterApplication2Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MasterApplication2Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MasterApplication2Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MasterApplication2Model.edmx</DependentUpon>
+      <LastGenOutput>MasterApplication2Model.Context.cs</LastGenOutput>
+    </None>
+    <None Include="MasterApplication2Model.edmx.diagram">
+      <DependentUpon>MasterApplication2Model.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="MasterApplication3Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MasterApplication3Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MasterApplication3Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MasterApplication3Model.edmx</DependentUpon>
+      <LastGenOutput>MasterApplication3Model.Context.cs</LastGenOutput>
+    </None>
+    <None Include="MasterApplication3Model.edmx.diagram">
+      <DependentUpon>MasterApplication3Model.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MasterEntities\MasterEntities.EF.csproj">
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{c5178e78-1f29-489c-a8a7-6cf4129e993f}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterEntities.TPC\MasterEntities.TPC.csproj">
+      <Project>{fc16d052-aef0-4aa4-8048-c2a0bce511c8}</Project>
+      <Name>MasterEntities.TPC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterEntities.TPH\MasterEntities.TPH.csproj">
+      <Project>{042e7443-2c42-404d-9031-407a5f48d3fc}</Project>
+      <Name>MasterEntities.TPH</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterEntities\MasterEntities.TPT.csproj">
       <Project>{290fc036-5ecd-4261-94d1-7b2683ce03c5}</Project>
-      <Name>MasterEntities.EF</Name>
+      <Name>MasterEntities.TPT</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -24,8 +24,6 @@ namespace Client.ViewModel
 
         readonly ReadOnlyCollection<ChildsViewModel> fizickoLice;
         private string CurrentRecursiveType;
-        private List<MasterEntities.FizickoLice> flList;
-        private object p;
 
         public ChildParentViewModel(List<FizickoLice> flList)
         {
