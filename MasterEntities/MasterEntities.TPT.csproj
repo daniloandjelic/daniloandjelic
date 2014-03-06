@@ -72,6 +72,10 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y "$(ProjectDir)bin\Debug\MasterEntities.dll" "$(SolutionDir)Client\TPT\"
+xcopy /Y "$(ProjectDir)bin\Debug\MasterEntities.pdb" "$(SolutionDir)Client\TPT\"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

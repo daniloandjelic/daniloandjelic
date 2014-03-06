@@ -239,14 +239,17 @@
     <ProjectReference Include="..\MasterEntities.TPC\MasterEntities.TPC.csproj">
       <Project>{fc16d052-aef0-4aa4-8048-c2a0bce511c8}</Project>
       <Name>MasterEntities.TPC</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\MasterEntities.TPH\MasterEntities.TPH.csproj">
       <Project>{042e7443-2c42-404d-9031-407a5f48d3fc}</Project>
       <Name>MasterEntities.TPH</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\MasterEntities\MasterEntities.TPT.csproj">
       <Project>{290fc036-5ecd-4261-94d1-7b2683ce03c5}</Project>
       <Name>MasterEntities.TPT</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -37,7 +37,6 @@ namespace DataAccessLayer
 
         public virtual IList<T> GetList(Func<T, bool> where, params System.Linq.Expressions.Expression<Func<T, object>>[] navigationProperties)
         {
-
             IList<T> result = null;
 
             using (var contx = new MasterApp1Entities())
