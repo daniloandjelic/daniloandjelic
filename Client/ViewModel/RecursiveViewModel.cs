@@ -65,12 +65,7 @@ namespace Client.ViewModel
             {
                 currentRecurisveType = value;
                 OnPropertyChanged("CurrentRecursiveType");
-                //if (CurrentRecursiveType == "ChildParent")
                 AddPageViewModel(new ChildParentViewModel(CurrentRecursiveType));
-
-                //else
-                   // PageViewModels.Add(new ParentChildView(CurrentRecursiveType));
-                //preimenuj
                 SwitchViewModel("ChildParent");
                 
             }
@@ -83,8 +78,6 @@ namespace Client.ViewModel
             {
                 DataAccessLayer.GenericDataAccessLayer<MasterEntities.FizickoLice> dal = new DataAccessLayer.GenericDataAccessLayer<MasterEntities.FizickoLice>();
                 List<MasterEntities.FizickoLice> flList = dal.GetAll().ToList();
-                //ChildParentViewModel testViewModel = new ChildParentViewModel(flList, this.DataContext as SwitchableViewModel);
-
                 PageViewModels.Add(new ChildParentViewModel(flList, this.CurrentRecursiveType));
             }
         }        

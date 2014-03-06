@@ -11,52 +11,48 @@ namespace Client.ViewModel
 {
     public class ChildsViewModel : TreeViewItemViewModel
     {
-        readonly FizickoLice _fl;
+        public FizickoLice Fl;
+        public string CurrRecursiveType;
         private bool _childFirst;
-        private string CurrentRecursiveType;
-
-        public ChildsViewModel(FizickoLice fl, bool childFirst)
-            : base(null, true)
-        {
-            _fl = fl;
-            _childFirst = childFirst;
-        }
+        private FizickoLice fl;
+        private string p;
+        //private ChildParentViewModel childParentViewModel;
 
         public ChildsViewModel(FizickoLice fl, string CurrentRecursiveType)
             : base(null, true)
         {
-            _fl = fl;
-            this.CurrentRecursiveType = CurrentRecursiveType;
+            Fl = fl;
+            CurrRecursiveType = CurrentRecursiveType;
         }
 
         public string ChildName
         {
-            get { return _fl.Naziv; } 
+            get { return Fl.Naziv; } 
         }
 
         protected override void LoadChildren()
         {
             GenericDataAccessLayer<FizickoLice> dal = new GenericDataAccessLayer<FizickoLice>();
-            _childFirst = CurrentRecursiveType == "ChildParent" ? true : false;
+            _childFirst = CurrRecursiveType == "ChildParent" ? true : false;
 
             if (_childFirst)
             {
-                FizickoLice fll = dal.GetEntity(f => f.Id == _fl.Id, f => f.Otac, f => f.Majka);
+                FizickoLice fll = dal.GetEntity(f => f.Id == Fl.Id, f => f.Otac, f => f.Majka);
 
                 if (fll.Majka != null)
-                    base.Children.Add(new ChildsViewModel(fll.Majka, _childFirst));
+                    base.Children.Add(new ChildsViewModel(fll.Majka, CurrRecursiveType));
 
                 if (fll.Otac != null)
-                    base.Children.Add(new ChildsViewModel(fll.Otac, _childFirst));
+                    base.Children.Add(new ChildsViewModel(fll.Otac, CurrRecursiveType));
 
             }
             else
             {
-                List<FizickoLice> fllColl = dal.GetList(f => f.OtacId == _fl.Id || f.MajkaId == _fl.Id, null).ToList();
+                List<FizickoLice> fllColl = dal.GetList(f => f.OtacId == Fl.Id || f.MajkaId == Fl.Id, null).ToList();
 
                 if (fllColl != null && fllColl.Count() > 0)
                     foreach (FizickoLice item in fllColl)
-                        base.Children.Add(new ChildsViewModel(item, _childFirst));
+                        base.Children.Add(new ChildsViewModel(item, CurrRecursiveType));
  
             }            
 

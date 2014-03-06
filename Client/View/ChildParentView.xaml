@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"     
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+             xmlns:converters="clr-namespace:Client.Converters"
              xmlns:vm="clr-namespace:Client.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -12,6 +13,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary  Source="pack://application:,,,/Client;component/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <converters:HierarchicalViewItemConverter x:Key="hierarchyConverter"/>
         </ResourceDictionary>
 
     </UserControl.Resources>
@@ -45,6 +47,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Image Width="16" Height="16" Margin="3,0" />
                             <TextBlock Text="{Binding Naziv}" />
+                            
                         </StackPanel>
                     </HierarchicalDataTemplate>
 
@@ -54,7 +57,9 @@
           >
                         <StackPanel Orientation="Horizontal">
                             <Image Width="16" Height="16" Margin="3,0" />
-                            <TextBlock Text="{Binding ChildName}" />
+                            <TextBlock>
+                            <TextBlock Text="{Binding Converter={StaticResource hierarchyConverter}}" />
+                            </TextBlock>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </TreeView.Resources>
@@ -64,4 +69,12 @@
 
     </Grid>
 
+
+    <!--<TextBlock.Text>
+        <MultiBinding Converter="{StaticResource hierarchyConverter}">
+            <Binding Path="." />
+            <Binding Path="IsExpanded" />
+        </MultiBinding>
+    </TextBlock.Text>
+    </TextBlock>-->
 </UserControl>

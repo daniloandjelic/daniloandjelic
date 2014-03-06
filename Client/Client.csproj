@@ -64,6 +64,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Converters\ComboBoxItemConverter.cs" />
+    <Compile Include="Converters\HierarchicalViewItemConverter.cs" />
     <Compile Include="Converters\RecursiveComboBoxConverter.cs" />
     <Compile Include="Converters\TitleConverter.cs" />
     <Compile Include="Framework\CollectionViewModel.cs" />

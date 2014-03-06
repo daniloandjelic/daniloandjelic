@@ -17,11 +17,6 @@ namespace Client.ViewModel
             get { return "Child ---> Parent View model"; }
         }
 
-        public ChildParentViewModel()
-        {
-        }
-
-
         readonly ReadOnlyCollection<ChildsViewModel> fizickoLice;
         private string CurrentRecursiveType;
 
