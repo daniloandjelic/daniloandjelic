@@ -6,6 +6,8 @@ using Client.Windows;
 using MasterEntities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -22,10 +24,7 @@ namespace Client.ViewModel
 
         public override bool SubmitCommand_CanExecute(object obj)
         {
-            FizickoLice fl = obj as FizickoLice;
-            if (fl != null)
-                return true;
-            return false;
+            return true;
         }
 
         public override void SubmitCommand_Execute(object obj)
@@ -33,12 +32,26 @@ namespace Client.ViewModel
             // TODO - Pozvati u drugom thread-u da vrti progress bar
             // Treba dodati u DAL da vraca poruku/bool uspesnosti operacije pa na nju da se bindujem za progress bar
             // kada zavrsi progress bar, onda pozvati CloseWindow
-            FizickoLice fl = obj as FizickoLice;
-            IBusinessLayerFacade<FizickoLice> bl = new FizickoLiceBusinessLayerImplementation();
-            if (fl.Id != 0)
-                bl.Update(fl);
+            
+            if (IsValid)
+            {
+                FizickoLice fl = obj as FizickoLice;
+                IBusinessLayerFacade<FizickoLice> bl = new FizickoLiceBusinessLayerImplementation();
+                if (fl.Id != 0)
+                    bl.Update(fl);
+                else
+                    bl.Create(fl);
+            }
             else
-                bl.Create(fl);
+            {
+                if (!_SubmitAttempted)
+                {
+                    _SubmitAttempted = true;
+                    foreach (string property in this.InvalidFields)
+                        OnPropertyChanged(property);
+                }
+            }
+            
         }
 
 
@@ -53,9 +66,113 @@ namespace Client.ViewModel
                 ImagePath = dlg.FileName;
                 FizickoLice fl = obj as FizickoLice;
 
-                if(fl != null)
+                if (fl != null)
                     fl.Slika = System.IO.File.ReadAllBytes(ImagePath);
             }
         }
+
+        protected override string ValidateProperty(string columnName)
+        {
+            string ret = string.Empty;
+            FizickoLice fl = ObjectToPersist as FizickoLice;
+            switch (columnName)
+            {
+                case "Ime":
+                    if (fl != null && string.IsNullOrEmpty(fl.Ime) || string.IsNullOrEmpty(Ime))
+                        ret = "Unos imena fizičkog lica je obavezan!";
+                    break;
+                case "Prezime":
+                    if (fl != null && string.IsNullOrEmpty(fl.Prezime) || string.IsNullOrEmpty(Prezime))
+                        ret = "Unos prezimena fizičkog lica je obavezan!";
+                    break;
+                case "IdentifikacioniBroj":
+                    if (fl != null && string.IsNullOrEmpty(fl.IdentifikacioniBroj) || string.IsNullOrEmpty(IdentifikacioniBroj))
+                        ret = "Unos JMBG-a je obavezan!";
+                    break;
+                case "DatumRodjenja":
+                    if (fl != null && fl.DatumRodjenja != null && (DateTime)fl.DatumRodjenja > DateTime.Now)
+                        ret = "Datum rodjenja mora biti pre današnjeg datuma!";
+                    break;
+            }
+
+            return ret;
+        }
+
+        #region Binding properties
+
+        private string ime;
+        public string Ime
+        {
+            get
+            {
+                if (ObjectToPersist != null)
+                    return (ObjectToPersist as FizickoLice).Ime;
+                else
+                    return string.Empty;
+            }
+            set
+            {
+                ime = value;
+                (ObjectToPersist as FizickoLice).Ime = value;
+                OnPropertyChanged("Ime");
+            }
+        }
+
+
+        private string prezime;
+        public string Prezime
+        {
+            get
+            {
+                if (ObjectToPersist != null)
+                    return (ObjectToPersist as FizickoLice).Prezime;
+                else
+                    return string.Empty;
+            }
+            set
+            {
+                prezime = value;
+                (ObjectToPersist as FizickoLice).Prezime = value;
+                OnPropertyChanged("Prezime");
+            }
+        }
+
+        private string identifikacioniBroj;
+        public string IdentifikacioniBroj
+        {
+            get
+            {
+                if (ObjectToPersist != null)
+                    return (ObjectToPersist as FizickoLice).IdentifikacioniBroj;
+                else
+                    return string.Empty;
+            }
+            set
+            {
+                identifikacioniBroj = value;
+                (ObjectToPersist as FizickoLice).IdentifikacioniBroj = value;
+                OnPropertyChanged("IdentifikacioniBroj");
+            }
+        }
+
+        private DateTime? datumRodjenja;
+        public DateTime? DatumRodjenja
+        {
+            get
+            {
+                if (ObjectToPersist != null)
+                    return (ObjectToPersist as FizickoLice).DatumRodjenja;
+                else
+                    return null;
+            }
+            set
+            {
+                datumRodjenja = value;
+                (ObjectToPersist as FizickoLice).DatumRodjenja = value;
+                OnPropertyChanged("DatumRodjenja");
+            }
+        }
+
+        #endregion
     }
 }

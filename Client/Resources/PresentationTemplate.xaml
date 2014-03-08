@@ -191,7 +191,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Margin" Value="0,0,0,0" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -521,6 +521,7 @@
         <Setter Property="Height" Value="30"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate x:Name="tmpltTextBox">
@@ -530,7 +531,9 @@
                         <Rectangle x:Name="GlowRectangle" RadiusX="5" RadiusY="5" Opacity="0" Fill="{StaticResource GlowFX}"></Rectangle>
                         <Border x:Name="BorderIntern" Opacity="1" BorderBrush="Black" BorderThickness="2" CornerRadius="3" Margin="1,1,-1,-1"></Border>
                         <Border x:Name="BorderExtern" Opacity="1" BorderBrush="#FF333333" BorderThickness="1" CornerRadius="3"></Border>
-                        <ScrollViewer x:Name="PART_ContentHost" Opacity=".8" Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="{Binding Path=HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding Path=VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}" Width="{Binding Path=Width, RelativeSource={RelativeSource TemplatedParent}}" Height="{Binding Path=Height, RelativeSource={RelativeSource TemplatedParent}}"></ScrollViewer>
+                        <ScrollViewer x:Name="PART_ContentHost" Opacity=".8" Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="{Binding Path=HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}" 
+                                      VerticalAlignment="{Binding Path=VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}" 
+                                      Width="{Binding Path=Width, RelativeSource={RelativeSource TemplatedParent}}" Height="{Binding Path=Height, RelativeSource={RelativeSource TemplatedParent}}"></ScrollViewer>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <EventTrigger RoutedEvent="TextBox.LostFocus">
@@ -561,21 +564,32 @@
         <Setter Property="BorderBrush" Value="{StaticResource BaseColor}"/>
         <Setter Property="BorderThickness" Value="6,6,6,6"/>
         <Setter Property="CornerRadius" Value="40,40,40,40"/>
-        <!--<Style.Triggers>
-            <Trigger Property="IsVisible" Value="True">
-                <Trigger.EnterActions>
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation 
-                                    Storyboard.TargetProperty="BorderBrush.Transform.X"  
-                                    From="0" To="800"  
-                                    Duration="0:0:0.5"  
-                                    RepeatBehavior="Forever" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.EnterActions>
-            </Trigger>
-        </Style.Triggers>-->
     </Style>
+
+
+    <!--<Style TargetType="{x:Type TextBlock}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Sagoe UI"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>-->
+
+
+    <ControlTemplate x:Key="ValidationTemplate1">
+        <DockPanel LastChildFill="True">
+            <Border DockPanel.Dock="Top"  BorderBrush="Red" BorderThickness="1" CornerRadius="4,4,0,0" 
+                    HorizontalAlignment="Right" Margin="0,0,5,0">
+                <Border.Background>
+                    <SolidColorBrush Color="Red" />
+                </Border.Background>
+                <TextBlock Text="{Binding ElementName=txtField, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                       Background="Transparent" FontSize="12" Foreground="White" Padding="10,0,3,0" Height="16" VerticalAlignment="Center"/>
+            </Border>
+            <Border DockPanel.Dock="Bottom" BorderBrush="Red" BorderThickness="3" CornerRadius="4">
+                <AdornedElementPlaceholder Name="txtField" />
+            </Border>
+        </DockPanel>
+    </ControlTemplate>
 
 </ResourceDictionary>

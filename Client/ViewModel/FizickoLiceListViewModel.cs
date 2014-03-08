@@ -24,7 +24,7 @@ namespace Client.ViewModel
 
         public FizickoLiceListViewModel()
         {
-            RefreshAllFizickaLica();            
+            RefreshCollectionOnPage();            
         }
 
         public override void NewCommand_Execute(object obj)
@@ -56,23 +56,13 @@ namespace Client.ViewModel
             }
         }
 
-        private void RefreshAllFizickaLica()
-        {
-            CollectionItems = GetAllFizickaLica();
-        }
-
-        private ObservableCollection<object> GetAllFizickaLica()
+        public override void RefreshCollectionOnPage()
         {
             GenericDataAccessLayer<FizickoLice> dal = new GenericDataAccessLayer<FizickoLice>();
             List<FizickoLice> collFl = dal.GetAll(f => f.Majka, f => f.Otac).ToList();//dal.GetAll().ToList();//
             ObservableCollection<object> oColl = new ObservableCollection<object>();
             collFl.ForEach(c => oColl.Add(c));
-            return oColl;
-        }
-
-        public override void RefreshCollectionOnPage()
-        {
-            RefreshAllFizickaLica();
+            CollectionItems = oColl;
         }
 
     }

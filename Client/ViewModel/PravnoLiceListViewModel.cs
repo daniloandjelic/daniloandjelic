@@ -19,7 +19,7 @@ namespace Client.ViewModel
     {
         public PravnoLiceListViewModel()
         {
-            RefreshPravnaLica();
+            RefreshCollectionOnPage();
         }
 
         public override void NewCommand_Execute(object obj)
@@ -51,30 +51,18 @@ namespace Client.ViewModel
             }
         }
 
-
-        private void RefreshPravnaLica()
-        {
-            CollectionItems = GetAllPravnaLica();
-        }
-
         public string Name
         {
             get { return "Pravna lica"; }
         }
 
-
-        private ObservableCollection<object> GetAllPravnaLica()
+        public override void RefreshCollectionOnPage()
         {
             GenericDataAccessLayer<PravnoLice> dal = new GenericDataAccessLayer<PravnoLice>();
             List<PravnoLice> collFl = dal.GetAll().ToList();
             ObservableCollection<object> oColl = new ObservableCollection<object>();
             collFl.ForEach(c => oColl.Add(c));
-            return oColl;
-        }
-
-        public override void RefreshCollectionOnPage()
-        {
-            RefreshPravnaLica();
+            CollectionItems = oColl;
         }
     }
 }

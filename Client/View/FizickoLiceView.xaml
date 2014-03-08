@@ -25,17 +25,22 @@
         <!--<TextBox Text="{Binding ObjectToPersist.Prezime, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" />-->
         <!--###############################-->
 
-        <TextBlock Text="Ime:"/>
-        <TextBox  Text="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.Ime, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" Grid.Column="1" />
+        <TextBlock Text="Ime:" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding DataContext.CurrentPageViewModel.CurrentPageViewModel.Ime, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                 Validation.ErrorTemplate="{StaticResource ValidationTemplate1}" Grid.Column="1"/>
 
-        <TextBlock Text="Prezime:" Grid.Row="1" />
-        <TextBox Text="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.Prezime, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" />
+        <TextBlock Text="Prezime:" Grid.Row="1" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding DataContext.CurrentPageViewModel.CurrentPageViewModel.Prezime, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                 Grid.Column="1" Grid.Row="1"  Validation.ErrorTemplate="{StaticResource ValidationTemplate1}"/>
 
-        <TextBlock Text="JMBG:" Grid.Row="2" />
-        <TextBox Text="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.IdentifikacioniBroj, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" />
-        
-        <TextBlock Text="Datum rodjenja:" Grid.Row="3"/>
-        <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.DatumRodjenja, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}">
+        <TextBlock Text="JMBG:" Grid.Row="2" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding DataContext.CurrentPageViewModel.CurrentPageViewModel.IdentifikacioniBroj, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 Grid.Column="1" Grid.Row="2"  Validation.ErrorTemplate="{StaticResource ValidationTemplate1}"/>
+
+        <TextBlock Text="Datum rodjenja:" Grid.Row="3" VerticalAlignment="Center"/>
+        <DatePicker Grid.Row="3" Grid.Column="1" Margin="5,2,2,2" BorderBrush="#FF333333" BorderThickness="2" 
+                    SelectedDate="{Binding DataContext.CurrentPageViewModel.CurrentPageViewModel.DatumRodjenja, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                    Validation.ErrorTemplate="{StaticResource ValidationTemplate1}">
         </DatePicker>
 
 

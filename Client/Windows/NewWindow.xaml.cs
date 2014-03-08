@@ -57,6 +57,7 @@ namespace Client.Windows
                     if (item != null)
                     {
                         (view.CurrentPageViewModel as PersistableViewModel).ObjectToPersist = item;
+                        ((view.CurrentPageViewModel as PersistableViewModel).CurrentPageViewModel as PersistableViewModel).ObjectToPersist = item;
 
                         ////Uncomment for explicit setter of view's ObjectToPersist
                         //((view.CurrentPageViewModel as SwitchableViewModel).CurrentPageViewModel as PersistableViewModel).ObjectToPersist = item;

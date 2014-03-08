@@ -29,7 +29,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Naziv"  DisplayMemberBinding="{Binding Naziv}"/>
-                    <GridViewColumn Header="Vreme Kreiranja" DisplayMemberBinding="{Binding VremeKreiranja, StringFormat='dd.MM.yyyy'}"/>
+                    <GridViewColumn Header="Datum osnivanja" DisplayMemberBinding="{Binding DatumOsnivanja, StringFormat='dd.MM.yyyy'}"/>
                     <GridViewColumn Header="Identifikacioni Broj" DisplayMemberBinding="{Binding IdentifikacioniBroj}"/>
                 </GridView>
             </ListView.View>
