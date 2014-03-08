@@ -39,7 +39,7 @@ namespace DataAccessLayer
         {
             IList<T> result = null;
 
-            using (var contx = new MasterApp1Entities())
+            using (var contx = contextFactory.GenerateContext())
             {
                 IQueryable<T> dbQuery = contx.Set<T>();
 

@@ -25,6 +25,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
@@ -44,9 +46,9 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         
-        <ContentControl Grid.Row="1" Grid.RowSpan="7" Margin="10,5,10,5" Content="{Binding CurrentPageViewModel}" />
+        <ContentControl Grid.Row="1" Grid.RowSpan="9" Margin="10,5,10,5" Content="{Binding CurrentPageViewModel}" />
 
-        <Grid Grid.Row="8">
+        <Grid Grid.Row="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>

@@ -132,7 +132,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="#FFFFFF" />
         <Setter Property="Padding" Value="8"/>
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="18" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Template">
             <Setter.Value>
@@ -291,7 +291,7 @@
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontSize" Value="18"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListView">
@@ -314,11 +314,11 @@
     <!--<Image Source="Images/home.png" />-->
 
     <DataTemplate x:Key="listBoxTemplate">
-        <DockPanel Height="80" Width="160">
-            <Border Margin="4,5,0,0" Height="32" Width="32" VerticalAlignment="Top">
+        <StackPanel Height="80" Width="160" Orientation="Horizontal">
+            <Border Margin="10,5,0,0" Height="32" Width="32" VerticalAlignment="Center">
                 <Image Source="{Binding Icon}" />
             </Border>
-        </DockPanel>
+        </StackPanel>
     </DataTemplate>
 
     <!--ListBoxItem-->
@@ -349,7 +349,7 @@
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="18" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Template">
             <Setter.Value>
@@ -553,5 +553,29 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+
+    <Style x:Key="_border" TargetType="{x:Type Border}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="BorderBrush" Value="{StaticResource BaseColor}"/>
+        <Setter Property="BorderThickness" Value="6,6,6,6"/>
+        <Setter Property="CornerRadius" Value="40,40,40,40"/>
+        <!--<Style.Triggers>
+            <Trigger Property="IsVisible" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                    Storyboard.TargetProperty="BorderBrush.Transform.X"  
+                                    From="0" To="800"  
+                                    Duration="0:0:0.5"  
+                                    RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+            </Trigger>
+        </Style.Triggers>-->
+    </Style>
+
 </ResourceDictionary>

@@ -41,5 +41,21 @@ namespace Client.ViewModel
                 bl.Create(fl);
         }
 
+
+        public override void OpenDialog_Execute(object obj)
+        {
+            System.Windows.Forms.OpenFileDialog dlg = new System.Windows.Forms.OpenFileDialog();
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "Slike (.png)|*.png";
+
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ImagePath = dlg.FileName;
+                FizickoLice fl = obj as FizickoLice;
+
+                if(fl != null)
+                    fl.Slika = System.IO.File.ReadAllBytes(ImagePath);
+            }
+        }
     }
 }

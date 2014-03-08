@@ -7,7 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <StackPanel>
-            <GroupBox Header="Izaberite bazu podataka" VerticalAlignment="Top" Margin="5,10,5,10">
+            <GroupBox Header="Izaberite bazu podataka" FontSize="18" VerticalAlignment="Top" Margin="5,10,5,10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -19,7 +19,7 @@
                     <RadioButton Grid.Row="2" GroupName="Databases" Content="MasterApp3" IsChecked="{Binding IsMasterApp3}"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Header="Izaberite sloj pristupa podatacima" VerticalAlignment="Top" Margin="5,10,5,10">
+            <GroupBox Header="Izaberite sloj pristupa podatacima" FontSize="18" VerticalAlignment="Top" Margin="5,10,5,10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>

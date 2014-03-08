@@ -14,12 +14,9 @@ namespace Client.ViewModel
         public FizickoLice Fl;
         public string CurrRecursiveType;
         private bool _childFirst;
-        private FizickoLice fl;
-        private string p;
-        //private ChildParentViewModel childParentViewModel;
 
         public ChildsViewModel(FizickoLice fl, string CurrentRecursiveType)
-            : base(null, true)
+            : base(fl, true)
         {
             Fl = fl;
             CurrRecursiveType = CurrentRecursiveType;

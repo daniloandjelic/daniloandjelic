@@ -9,6 +9,19 @@ namespace Client.Framework
 {
     public class PersistableViewModel : SwitchableViewModel
     {
+        private string imagePath;
+        public string ImagePath
+        {
+            get
+            {
+                return imagePath;
+            }
+            set
+            {
+                imagePath = value;
+                OnPropertyChanged("ImagePath");
+            }
+        }
         private object objectToPersist;
         public object ObjectToPersist
         {
@@ -21,7 +34,7 @@ namespace Client.Framework
                 objectToPersist = value;
                 this.OnPropertyChanged("ObjectToPersist");
                 if (objectToPersist != null)
-                    this.SwitchViewModel(objectToPersist.GetType().Name);
+                    this.SwitchViewModel(objectToPersist.GetType().Name.Contains("_") ? objectToPersist.GetType().Name.Substring(0,objectToPersist.GetType().Name.IndexOf("_")) : objectToPersist.GetType().Name);
             }
         }
     }

@@ -20,7 +20,8 @@ namespace Client.ViewModel
         public override void SubmitCommand_Execute(object obj)
         {
             GlobalVariables.Instance.SetVariables(DatabaseConnection, DAL);
-            MainWindow mw = new MainWindow();            
+            MainWindow mw = new MainWindow();
+            mw.WindowState = System.Windows.WindowState.Maximized;
             CloseWindow_Execute(obj);
             mw.Show();
         }
@@ -93,6 +94,11 @@ namespace Client.ViewModel
         }
         #endregion
 
+
+        public override void OpenDialog_Execute(object obj)
+        {
+            
+        }
     }
 
 }

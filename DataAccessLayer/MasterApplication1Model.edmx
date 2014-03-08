@@ -49,6 +49,7 @@
           <Property Name="IdentifikacioniBroj" Type="varchar" MaxLength="20" />
           <Property Name="Jezik" Type="varchar" MaxLength="20" />
           <Property Name="IdentifikacioniDokumentId" Type="bigint" />
+          <Property Name="Slika" Type="image" />
         </EntityType>
         <EntityType Name="PravnoLice">
           <Key>
@@ -143,6 +144,7 @@
           <Property Name="IdentifikacioniBroj" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="Jezik" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="IdentifikacioniDokumentId" Type="Int64" />
+          <Property Type="Binary" Name="Slika" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="PravnoLice" BaseType="MasterApp1Model.Osoba">
           <Property Name="PunoIme" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
@@ -182,6 +184,7 @@
           <EntitySetMapping Name="Osoba">
             <EntityTypeMapping TypeName="IsTypeOf(MasterApp1Model.Osoba)">
               <MappingFragment StoreEntitySet="Osoba">
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdentifikacioniDokumentId" ColumnName="IdentifikacioniDokumentId" />
                 <ScalarProperty Name="Jezik" ColumnName="Jezik" />

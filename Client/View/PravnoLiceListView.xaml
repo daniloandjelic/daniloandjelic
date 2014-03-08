@@ -21,11 +21,18 @@
                       ItemContainerStyle="{DynamicResource ListViewItemContainerStyle}">
             <ListView.View>
                 <GridView>
-                        <GridViewColumn Header="Naziv"  DisplayMemberBinding="{Binding Naziv}"/>
+                    <GridViewColumn Header="Slika">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="48" Height="48" Source="{Binding Slika}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Naziv"  DisplayMemberBinding="{Binding Naziv}"/>
                     <GridViewColumn Header="Vreme Kreiranja" DisplayMemberBinding="{Binding VremeKreiranja, StringFormat='dd.MM.yyyy'}"/>
-                        <GridViewColumn Header="Identifikacioni Broj" DisplayMemberBinding="{Binding IdentifikacioniBroj}"/>
+                    <GridViewColumn Header="Identifikacioni Broj" DisplayMemberBinding="{Binding IdentifikacioniBroj}"/>
                 </GridView>
             </ListView.View>
-        </ListView>  
+        </ListView>
     </Grid>
 </UserControl>

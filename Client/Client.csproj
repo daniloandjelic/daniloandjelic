@@ -65,6 +65,7 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Converters\ComboBoxItemConverter.cs" />
     <Compile Include="Converters\HierarchicalViewItemConverter.cs" />
+    <Compile Include="Converters\ImageConverter.cs" />
     <Compile Include="Converters\RecursiveComboBoxConverter.cs" />
     <Compile Include="Converters\TitleConverter.cs" />
     <Compile Include="Framework\CollectionViewModel.cs" />
@@ -260,6 +261,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\does-not-exist.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

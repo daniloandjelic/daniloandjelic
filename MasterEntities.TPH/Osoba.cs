@@ -20,5 +20,6 @@ namespace MasterEntities
         public Nullable<bool> Rezident { get; set; }
         public string IdentifikacioniBroj { get; set; }
         public string Jezik { get; set; }
+        public byte[] Slika { get; set; }
     }
 }

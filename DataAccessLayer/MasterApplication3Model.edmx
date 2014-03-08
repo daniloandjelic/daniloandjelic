@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MasterEntities.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MasterEntities.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="MasterEntitiesStoreContainer">
           <EntitySet Name="Osoba" EntityType="MasterEntities.Store.Osoba" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
@@ -29,9 +29,9 @@
           <Property Name="PravnoLiceDatumOsnivanja" Type="datetime" />
           <Property Name="PravnoLicePIB" Type="varchar" MaxLength="20" />
           <Property Name="ObjectType" Type="int" />
+          <Property Name="Slika" Type="image" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MasterEntities" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -48,6 +48,7 @@
           <Property Name="Rezident" Type="Boolean" />
           <Property Name="IdentifikacioniBroj" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="Jezik" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Type="Binary" Name="Slika" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="FizickoLice" BaseType="MasterEntities.Osoba" >
           <Property Type="String" Name="Ime" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -71,6 +72,7 @@
           <EntitySetMapping Name="Osoba">
             <EntityTypeMapping TypeName="IsTypeOf(MasterEntities.FizickoLice)">
               <MappingFragment StoreEntitySet="Osoba">
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
                 <ScalarProperty Name="Jezik" ColumnName="Jezik" />
                 <ScalarProperty Name="IdentifikacioniBroj" ColumnName="IdentifikacioniBroj" />
                 <ScalarProperty Name="Rezident" ColumnName="Rezident" />
@@ -88,6 +90,7 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(MasterEntities.PravnoLice)">
               <MappingFragment StoreEntitySet="Osoba">
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
                 <ScalarProperty Name="PIB" ColumnName="PravnoLicePIB" />
                 <ScalarProperty Name="DatumOsnivanja" ColumnName="PravnoLiceDatumOsnivanja" />
                 <ScalarProperty Name="PunoIme" ColumnName="PravnoLicePunoIme" />
@@ -102,6 +105,7 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="MasterEntities.Osoba">
               <MappingFragment StoreEntitySet="Osoba">
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Jezik" ColumnName="Jezik" />
                 <ScalarProperty Name="IdentifikacioniBroj" ColumnName="IdentifikacioniBroj" />

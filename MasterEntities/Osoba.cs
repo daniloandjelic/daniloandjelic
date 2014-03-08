@@ -21,5 +21,6 @@ namespace MasterEntities
         public string IdentifikacioniBroj { get; set; }
         public string Jezik { get; set; }
         public Nullable<long> IdentifikacioniDokumentId { get; set; }
+        public byte[] Slika { get; set; }
     }
 }

@@ -108,6 +108,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MasterApplication2Model.edmx</DependentUpon>
       <LastGenOutput>MasterApplication2Model.Context.cs</LastGenOutput>
+      <CustomToolNamespace>MasterEntities</CustomToolNamespace>
     </None>
     <None Include="MasterApplication2Model.edmx.diagram">
       <DependentUpon>MasterApplication2Model.edmx</DependentUpon>
@@ -120,6 +121,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MasterApplication3Model.edmx</DependentUpon>
       <LastGenOutput>MasterApplication3Model.Context.cs</LastGenOutput>
+      <CustomToolNamespace>MasterEntities</CustomToolNamespace>
     </None>
     <None Include="MasterApplication3Model.edmx.diagram">
       <DependentUpon>MasterApplication3Model.edmx</DependentUpon>

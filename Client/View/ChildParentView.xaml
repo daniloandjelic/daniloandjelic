@@ -14,67 +14,50 @@
                 <ResourceDictionary  Source="pack://application:,,,/Client;component/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <converters:HierarchicalViewItemConverter x:Key="hierarchyConverter"/>
+            <converters:ImageConverter x:Key="imageConverter"/>
         </ResourceDictionary>
 
     </UserControl.Resources>
 
     <Grid>
-        
         <DockPanel>
             <TextBlock DockPanel.Dock="Bottom" TextWrapping="Wrap" >
             </TextBlock>
-            <TreeView ItemsSource="{Binding FizickoLice}" Background="{StaticResource NewPageBackground}">
+            <TreeView ItemsSource="{Binding FizickoLice}" Background="{StaticResource NewPageBackground}" VerticalContentAlignment="Stretch">
                 <TreeView.ItemContainerStyle>
                     <Style TargetType="{x:Type TreeViewItem}">
                         <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
                         <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
                         <Setter Property="FontWeight" Value="Normal" />
                         <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="FontSize" Value="15" />
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="BorderBrush" Value="#FF143c65" />
+                            </Trigger>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F5BA56" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
                 </TreeView.ItemContainerStyle>
 
                 <TreeView.Resources>
-                    <HierarchicalDataTemplate 
-          DataType="{x:Type vm:ChildParentViewModel}" 
-          ItemsSource="{Binding Children}"
-          >
+                    <HierarchicalDataTemplate DataType="{x:Type vm:ChildsViewModel}" ItemsSource="{Binding Children}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Width="16" Height="16" Margin="3,0" />
-                            <TextBlock Text="{Binding Naziv}" />
-                            
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-
-                    <HierarchicalDataTemplate 
-          DataType="{x:Type vm:ChildsViewModel}" 
-          ItemsSource="{Binding Children}"
-          >
-                        <StackPanel Orientation="Horizontal">
-                            <Image Width="16" Height="16" Margin="3,0" />
+                            <Border Grid.Column="0" Margin="2,2,2,2" BorderBrush="{StaticResource BaseColor}" BorderThickness="3,3,3,3" CornerRadius="10,10,10,10" VerticalAlignment="Center">
+                                <Image Width="64" Height="64" Margin="3,0" Source="{Binding Parent.Slika, Converter={StaticResource imageConverter}}"/>
+                            </Border>
+                            <Border Grid.Column="0" Margin="2,2,2,2" BorderBrush="{StaticResource BaseColor}" VerticalAlignment="Center">
                             <TextBlock>
-                            <TextBlock Text="{Binding Converter={StaticResource hierarchyConverter}}" />
+                                <TextBlock Text="{Binding Converter={StaticResource hierarchyConverter}}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </TextBlock>
+                            </Border>
                         </StackPanel>
                     </HierarchicalDataTemplate>
-                </TreeView.Resources>
-                    
+                </TreeView.Resources>                    
             </TreeView>
         </DockPanel>
-
     </Grid>
-
-
-    <!--<TextBlock.Text>
-        <MultiBinding Converter="{StaticResource hierarchyConverter}">
-            <Binding Path="." />
-            <Binding Path="IsExpanded" />
-        </MultiBinding>
-    </TextBlock.Text>
-    </TextBlock>-->
 </UserControl>

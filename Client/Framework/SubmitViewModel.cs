@@ -12,12 +12,21 @@ namespace Client.Framework
     {
         public DelegateCommand SubmitCommand { get; private set; }
         public DelegateCommand CloseWindowCommand { get; private set; }
+        public DelegateCommand OpenFileDialogCommand { get; private set; }
 
         public SubmitViewModel()
         {
             SubmitCommand = new DelegateCommand(SubmitCommand_Execute, SubmitCommand_CanExecute);
             CloseWindowCommand = new DelegateCommand(CloseWindow_Execute, CloseWindow_CanExecute);
+            OpenFileDialogCommand = new DelegateCommand(OpenDialog_Execute, OpenDialog_CanExecute);
         }
+
+        private bool OpenDialog_CanExecute(object obj)
+        {
+            return obj != null;
+        }
+
+        public abstract void OpenDialog_Execute(object obj);        
 
         [System.Diagnostics.DebuggerStepThrough]
         public virtual bool CloseWindow_CanExecute(object obj)

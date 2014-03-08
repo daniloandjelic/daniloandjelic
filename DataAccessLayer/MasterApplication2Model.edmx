@@ -33,6 +33,7 @@
           <Property Name="Pol" Type="varchar" MaxLength="10" />
           <Property Name="OtacId" Type="bigint" />
           <Property Name="MajkaId" Type="bigint" />
+          <Property Name="Slika" Type="image" />
         </EntityType>
         <EntityType Name="PravnoLice">
           <Key>
@@ -47,6 +48,7 @@
           <Property Name="PunoIme" Type="varchar" MaxLength="10" />
           <Property Name="DatumOsnivanja" Type="datetime" />
           <Property Name="PIB" Type="varchar" MaxLength="20" />
+          <Property Name="Slika" Type="image" />
         </EntityType>
         <Association Name="FK_FizickoLice_Majka">
           <End Role="FizickoLice" Type="MasterEntities.Store.FizickoLice" Multiplicity="0..1" />
@@ -112,6 +114,7 @@
           <Property Type="Boolean" Name="Rezident" />
           <Property Type="String" Name="IdentifikacioniBroj" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Jezik" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="Slika" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_FizickoLice_Majka">
           <End Type="MasterEntities.FizickoLice" Role="FizickoLice" Multiplicity="0..1" />
@@ -156,6 +159,7 @@
                 <ScalarProperty Name="DatumRodjenja" ColumnName="DatumRodjenja" />
                 <ScalarProperty Name="Prezime" ColumnName="Prezime" />
                 <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Slika" ColumnName="Slika"/>
                 <ScalarProperty Name="MajkaId" ColumnName="MajkaId" />
                 <ScalarProperty Name="OtacId" ColumnName="OtacId" />
               </MappingFragment>
@@ -168,6 +172,7 @@
                 <ScalarProperty Name="Rezident" ColumnName="Rezident" />
                 <ScalarProperty Name="IdentifikacioniBroj" ColumnName="IdentifikacioniBroj" />
                 <ScalarProperty Name="Jezik" ColumnName="Jezik" />
+                <ScalarProperty Name="Slika" ColumnName="Slika"/>
                 <ScalarProperty Name="PIB" ColumnName="PIB" />
                 <ScalarProperty Name="DatumOsnivanja" ColumnName="DatumOsnivanja" />
                 <ScalarProperty Name="PunoIme" ColumnName="PunoIme" />

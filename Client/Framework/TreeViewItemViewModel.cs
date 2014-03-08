@@ -1,5 +1,6 @@
 ﻿using Client.Framework;
 using Client.ViewModel;
+using MasterEntities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,7 @@ namespace Client.Framework
         static readonly TreeViewItemViewModel DummyChild = new TreeViewItemViewModel();
 
         readonly ObservableCollection<TreeViewItemViewModel> _children;
-        readonly TreeViewItemViewModel _parent;
+        FizickoLice _parent;
 
         bool _isExpanded;
         bool _isSelected;
@@ -25,7 +26,7 @@ namespace Client.Framework
 
         #region Constructors
 
-        protected TreeViewItemViewModel(TreeViewItemViewModel parent, bool lazyLoadChildren)
+        protected TreeViewItemViewModel(FizickoLice parent, bool lazyLoadChildren)
         {
             _parent = parent;
 
@@ -78,8 +79,8 @@ namespace Client.Framework
                 }
 
 
-                if (_isExpanded && _parent != null)
-                    _parent.IsExpanded = true;
+                //if (_isExpanded && _parent != null)
+                //    _parent.IsExpanded = true;
 
                 if (this.HasDummyChild)
                 {
@@ -116,9 +117,15 @@ namespace Client.Framework
 
         #region Parent
 
-        public TreeViewItemViewModel Parent
+        public FizickoLice Parent
         {
             get { return _parent; }
+
+            set 
+            { 
+                _parent = value;
+                OnPropertyChanged("Parent");
+            }
         }
 
         #endregion // Parent
