@@ -16,7 +16,6 @@
             <converters:HierarchicalViewItemConverter x:Key="hierarchyConverter"/>
             <converters:ImageConverter x:Key="imageConverter"/>
         </ResourceDictionary>
-
     </UserControl.Resources>
 
     <Grid>

@@ -23,6 +23,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -70,20 +71,35 @@
         <ComboBox Name="cboxFather"
                   Margin="5" 
                   ItemsSource="{Binding MuskaFizickaLica}"
-                  SelectedItem="{Binding Otac, Mode=TwoWay}"
-                  SelectedIndex="{Binding SelIndex}"
+                  SelectedItem="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.Otac, Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                  SelectedIndex="{Binding SelIndexOtac}"
                   Grid.Column="1" Grid.Row="5">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Converter={StaticResource OceviCboxConverter}}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Margin="0,0,10,0" Width="48" Height="48" Source="{Binding Slika}" />
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Converter={StaticResource OceviCboxConverter}}"/>
+                    </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-
-
-
-
+        <TextBlock Text="Majka:" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
+        <ComboBox Name="cboxMother"
+                  Margin="5" 
+                  ItemsSource="{Binding ZenskaFizickaLica}"
+                  SelectedItem="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.Majka, Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                  SelectedIndex="{Binding SelIndexMajka}"
+                  Grid.Column="1" Grid.Row="6" Opacity="0.9">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Margin="0,0,10,0" Width="48" Height="48" Source="{Binding Slika}" />
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Converter={StaticResource OceviCboxConverter}}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </Grid>
 </UserControl>
 <!--SelectedItem="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.Pol, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"-->

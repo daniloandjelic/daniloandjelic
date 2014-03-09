@@ -41,7 +41,7 @@
                   Grid.Row="0">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Converter={StaticResource cboxConverter}}"/>
+                    <TextBlock FontSize="26" Text="{Binding Converter={StaticResource cboxConverter}}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>

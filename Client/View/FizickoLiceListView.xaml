@@ -8,6 +8,8 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:PolConverter x:Key="PolConverter"/>
+            <converters:FizickoLiceListFatherNameConverter x:Key="fatherNameConverter"/>
+            <converters:FizickoLiceListMotherNameConverter x:Key="motherNameConverter"/>            
         </ResourceDictionary>
     </UserControl.Resources>    
     
@@ -45,8 +47,8 @@
                         </GridViewColumn.DisplayMemberBinding>
                     </GridViewColumn>
                     <GridViewColumn Header="Datum rodjenja" DisplayMemberBinding="{Binding DatumRodjenja, StringFormat='dd.MM.yyyy'}" />
-                    <GridViewColumn Header="Otac" DisplayMemberBinding="{Binding Otac.Naziv}" />
-                    <GridViewColumn Header="Majka" DisplayMemberBinding="{Binding Majka.Naziv}" />
+                    <GridViewColumn Header="Otac" DisplayMemberBinding="{Binding Otac, Converter={StaticResource fatherNameConverter}}" />
+                    <GridViewColumn Header="Majka" DisplayMemberBinding="{Binding Majka, Converter={StaticResource motherNameConverter}}" />
                 </GridView>
             </ListView.View>
         </ListView>

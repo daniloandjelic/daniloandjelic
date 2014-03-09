@@ -72,6 +72,8 @@ namespace Client.ViewModel
             }
         }
 
+        #region Validation
+
         protected override string ValidateProperty(string columnName)
         {
             string ret = string.Empty;
@@ -98,6 +100,8 @@ namespace Client.ViewModel
 
             return ret;
         }
+
+        #endregion
 
         #region Binding properties
 
@@ -129,20 +133,6 @@ namespace Client.ViewModel
                 OnPropertyChanged("Polovi");
             }
 
-        }
-
-        private int? selIndex = null;
-        public int? SelIndex
-        {
-            get
-            {
-                return selIndex;
-            }
-            set
-            {
-                selIndex = value;
-                OnPropertyChanged("SelIndex"); 
-            }
         }
 
         private string ime;
@@ -218,30 +208,41 @@ namespace Client.ViewModel
             }
         }
 
-        #endregion
-
-
-        private FizickoLice otac;
-        public FizickoLice Otac
+        private int? selIndexOtac = null;
+        public int? SelIndexOtac
         {
             get
             {
-                return otac;
+                return selIndexOtac;
             }
             set
             {
-                otac = value;
-                (ObjectToPersist as FizickoLice).Otac = value;
-                OnPropertyChanged("Otac");
+                selIndexOtac = value;
+                OnPropertyChanged("SelIndexOtac");
+            }
+        }
+
+
+        private int? selIndexMajka = null;
+        public int? SelIndexMajka
+        {
+            get
+            {
+                return selIndexMajka;
+            }
+            set
+            {
+                selIndexMajka = value;
+                OnPropertyChanged("SelIndexMajka");
             }
         }
 
         private ObservableCollection<FizickoLice> muskaFizickaLica;
         public ObservableCollection<FizickoLice> MuskaFizickaLica
         {
-            get 
+            get
             {
-                return muskaFizickaLica; 
+                return muskaFizickaLica;
             }
             set
             {
@@ -249,6 +250,24 @@ namespace Client.ViewModel
                 OnPropertyChanged("MuskaFizickaLica");
             }
         }
+
+
+        private ObservableCollection<FizickoLice> zenskaFizickaLica;
+        public ObservableCollection<FizickoLice> ZenskaFizickaLica
+        {
+            get
+            {
+                return zenskaFizickaLica;
+            }
+            set
+            {
+                zenskaFizickaLica = value;
+                OnPropertyChanged("ZenskaFizickaLica");
+            }
+        }
+
+        #endregion
+                
         internal void RefreshOceviCollection()
         {
             GenericDataAccessLayer<FizickoLice> dal = new GenericDataAccessLayer<FizickoLice>();
@@ -259,12 +278,39 @@ namespace Client.ViewModel
 
         internal void SetOtac()
         {
-            Otac = (ObjectToPersist as FizickoLice).Otac;
-            if (otac != null)
+            FizickoLice fl = ObjectToPersist as FizickoLice;
+
+            if (fl != null && fl.Otac != null)
             {
-                SelIndex = MuskaFizickaLica.Select((c, i) => new { FizickoLice = c, Index = i })
-                                             .Where(x => x.FizickoLice.Id == (ObjectToPersist as FizickoLice).OtacId)
+                SelIndexOtac = GetIndexFromCollection(MuskaFizickaLica, (ObjectToPersist as FizickoLice).OtacId);
+                    //MuskaFizickaLica.Select((c, i) => new { FizickoLice = c, Index = i })
+                    //                         .Where(x => x.FizickoLice.Id == (ObjectToPersist as FizickoLice).OtacId)
+                    //                         .Select(x => x.Index as int?).FirstOrDefault();
+            }
+        }
+
+        private int? GetIndexFromCollection(ObservableCollection<FizickoLice> Coll, long? flId)
+        {
+            return Coll.Select((c, i) => new { FizickoLice = c, Index = i })
+                                             .Where(x => x.FizickoLice.Id == flId)
                                              .Select(x => x.Index as int?).FirstOrDefault();
+        }
+
+        internal void RefreshMajkeCollection()
+        {
+            GenericDataAccessLayer<FizickoLice> dal = new GenericDataAccessLayer<FizickoLice>();
+            List<FizickoLice> collFl = dal.GetList(fl => fl.Pol == "Z" && fl.Id != (ObjectToPersist as FizickoLice).Id).ToList();
+            ZenskaFizickaLica = new ObservableCollection<FizickoLice>(collFl);
+            SetMajka();
+        }
+
+        private void SetMajka()
+        {
+            FizickoLice fl = ObjectToPersist as FizickoLice;
+
+            if (fl != null && fl.Majka != null)
+            {
+                SelIndexMajka = GetIndexFromCollection(ZenskaFizickaLica, (ObjectToPersist as FizickoLice).MajkaId);
             }
         }
     }

@@ -56,6 +56,7 @@ namespace Client.Windows
                             if (flmv != null)
                             {
                                 flmv.RefreshOceviCollection();
+                                flmv.RefreshMajkeCollection();
                             }
                         }
                     }

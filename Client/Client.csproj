@@ -65,6 +65,7 @@
     <Compile Include="Client.Enums.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Converters\ComboBoxItemConverter.cs" />
+    <Compile Include="Converters\FizickoLiceListParentsNameConverter.cs" />
     <Compile Include="Converters\HierarchicalViewItemConverter.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
     <Compile Include="Converters\OceviCboxConverter.cs" />
