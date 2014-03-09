@@ -18,16 +18,16 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Naziv:" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding DataContext.CurrentPageViewModel.CurrentPageViewModel.Naziv, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+        <TextBox Text="{Binding Naziv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Grid.Column="1" Validation.ErrorTemplate="{StaticResource ValidationTemplate1}"/>
 
         <TextBlock Text="Identifikacioni Broj:" Grid.Row="1" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding DataContext.CurrentPageViewModel.CurrentPageViewModel.IdentifikacioniBroj, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+        <TextBox Text="{Binding IdentifikacioniBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Grid.Column="1" Grid.Row="1" Validation.ErrorTemplate="{StaticResource ValidationTemplate1}"/>
 
         <TextBlock Text="Datum osivanja:" Grid.Row="2" VerticalAlignment="Center"/>
         <DatePicker Grid.Row="2" Grid.Column="1" Margin="5,2,2,2" BorderBrush="#FF333333" BorderThickness="2" 
-                    SelectedDate="{Binding DataContext.CurrentPageViewModel.CurrentPageViewModel.DatumOsnivanja, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                    SelectedDate="{Binding DatumOsnivanja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     Validation.ErrorTemplate="{StaticResource ValidationTemplate1}">
         </DatePicker>
         

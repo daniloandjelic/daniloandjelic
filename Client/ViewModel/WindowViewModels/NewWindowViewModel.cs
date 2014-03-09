@@ -11,8 +11,6 @@ namespace Client.ViewModel
     {
         public NewWindowViewModel()
         {
-            //PageViewModels.Add(new FizickoLiceViewModel());
-            //PageViewModels.Add(new PravnoLiceViewModel());
             PageViewModels.Add(new NewUpdateViewModel());
             CurrentPageViewModel = PageViewModels[0];
         }

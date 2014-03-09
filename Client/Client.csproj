@@ -62,10 +62,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Client.Enums.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Converters\ComboBoxItemConverter.cs" />
     <Compile Include="Converters\HierarchicalViewItemConverter.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
+    <Compile Include="Converters\OceviCboxConverter.cs" />
+    <Compile Include="Converters\PolConverter.cs" />
     <Compile Include="Converters\RecursiveComboBoxConverter.cs" />
     <Compile Include="Converters\TitleConverter.cs" />
     <Compile Include="Framework\CollectionViewModel.cs" />

@@ -60,9 +60,7 @@ namespace Client.ViewModel
         {
             GenericDataAccessLayer<PravnoLice> dal = new GenericDataAccessLayer<PravnoLice>();
             List<PravnoLice> collFl = dal.GetAll().ToList();
-            ObservableCollection<object> oColl = new ObservableCollection<object>();
-            collFl.ForEach(c => oColl.Add(c));
-            CollectionItems = oColl;
+            CollectionItems = new ObservableCollection<object>(collFl);
         }
     }
 }

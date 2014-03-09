@@ -3,6 +3,7 @@ using BusinessLogicLayer.Implementations;
 using Client.Commands;
 using Client.Framework;
 using Client.Windows;
+using DataAccessLayer;
 using MasterEntities;
 using System;
 using System.Collections.Generic;
@@ -100,6 +101,50 @@ namespace Client.ViewModel
 
         #region Binding properties
 
+        private Client.Enums.ClientEnums.Pol pol;
+        public Client.Enums.ClientEnums.Pol Pol
+        {
+            get
+            {
+                return pol;
+            }
+            set
+            {
+                pol = value;
+                (ObjectToPersist as FizickoLice).Pol = value.ToString();
+                OnPropertyChanged("Pol");
+            }
+        }
+
+        private ObservableCollection<Client.Enums.ClientEnums.Pol> polovi;
+        public ObservableCollection<Client.Enums.ClientEnums.Pol> Polovi
+        {
+            get
+            {
+                return new ObservableCollection<Enums.ClientEnums.Pol>(Enum.GetValues(typeof(Client.Enums.ClientEnums.Pol)).Cast<Client.Enums.ClientEnums.Pol>());
+            }
+            set
+            {
+                polovi = value;
+                OnPropertyChanged("Polovi");
+            }
+
+        }
+
+        private int? selIndex = null;
+        public int? SelIndex
+        {
+            get
+            {
+                return selIndex;
+            }
+            set
+            {
+                selIndex = value;
+                OnPropertyChanged("SelIndex"); 
+            }
+        }
+
         private string ime;
         public string Ime
         {
@@ -174,5 +219,53 @@ namespace Client.ViewModel
         }
 
         #endregion
+
+
+        private FizickoLice otac;
+        public FizickoLice Otac
+        {
+            get
+            {
+                return otac;
+            }
+            set
+            {
+                otac = value;
+                (ObjectToPersist as FizickoLice).Otac = value;
+                OnPropertyChanged("Otac");
+            }
+        }
+
+        private ObservableCollection<FizickoLice> muskaFizickaLica;
+        public ObservableCollection<FizickoLice> MuskaFizickaLica
+        {
+            get 
+            {
+                return muskaFizickaLica; 
+            }
+            set
+            {
+                muskaFizickaLica = value;
+                OnPropertyChanged("MuskaFizickaLica");
+            }
+        }
+        internal void RefreshOceviCollection()
+        {
+            GenericDataAccessLayer<FizickoLice> dal = new GenericDataAccessLayer<FizickoLice>();
+            List<FizickoLice> collFl = dal.GetList(fl => fl.Pol == "M" && fl.Id != (ObjectToPersist as FizickoLice).Id).ToList();
+            MuskaFizickaLica = new ObservableCollection<FizickoLice>(collFl);
+            SetOtac();
+        }
+
+        internal void SetOtac()
+        {
+            Otac = (ObjectToPersist as FizickoLice).Otac;
+            if (otac != null)
+            {
+                SelIndex = MuskaFizickaLica.Select((c, i) => new { FizickoLice = c, Index = i })
+                                             .Where(x => x.FizickoLice.Id == (ObjectToPersist as FizickoLice).OtacId)
+                                             .Select(x => x.Index as int?).FirstOrDefault();
+            }
+        }
     }
 }

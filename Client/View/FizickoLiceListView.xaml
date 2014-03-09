@@ -3,7 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:Client.Converters"
              >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:PolConverter x:Key="PolConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -32,6 +39,11 @@
                     <GridViewColumn Header="Ime" DisplayMemberBinding="{Binding Ime}"/>
                     <GridViewColumn Header="Prezime" DisplayMemberBinding="{Binding Prezime}"/>
                     <GridViewColumn Header="JMBG" DisplayMemberBinding="{Binding IdentifikacioniBroj}" />
+                    <GridViewColumn Header="Pol" Width="80">
+                        <GridViewColumn.DisplayMemberBinding>
+                            <Binding Path="Pol" Converter="{StaticResource PolConverter}" />
+                        </GridViewColumn.DisplayMemberBinding>
+                    </GridViewColumn>
                     <GridViewColumn Header="Datum rodjenja" DisplayMemberBinding="{Binding DatumRodjenja, StringFormat='dd.MM.yyyy'}" />
                     <GridViewColumn Header="Otac" DisplayMemberBinding="{Binding Otac.Naziv}" />
                     <GridViewColumn Header="Majka" DisplayMemberBinding="{Binding Majka.Naziv}" />

@@ -3,11 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:Client.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="300">
 
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:PolConverter x:Key="PolConverter"/>
+            <converters:OceviCboxConverter x:Key="OceviCboxConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid TextElement.Foreground="DarkBlue" TextElement.FontSize="16">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -25,25 +35,55 @@
         <!--<TextBox Text="{Binding ObjectToPersist.Prezime, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" />-->
         <!--###############################-->
 
-        <TextBlock Text="Ime:" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding DataContext.CurrentPageViewModel.CurrentPageViewModel.Ime, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+        <TextBlock Text="Ime:" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Ime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Validation.ErrorTemplate="{StaticResource ValidationTemplate1}" Grid.Column="1"/>
 
-        <TextBlock Text="Prezime:" Grid.Row="1" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding DataContext.CurrentPageViewModel.CurrentPageViewModel.Prezime, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+        <TextBlock Text="Prezime:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Prezime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Grid.Column="1" Grid.Row="1"  Validation.ErrorTemplate="{StaticResource ValidationTemplate1}"/>
 
-        <TextBlock Text="JMBG:" Grid.Row="2" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding DataContext.CurrentPageViewModel.CurrentPageViewModel.IdentifikacioniBroj, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+        <TextBlock Text="JMBG:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding IdentifikacioniBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  Grid.Column="1" Grid.Row="2"  Validation.ErrorTemplate="{StaticResource ValidationTemplate1}"/>
 
-        <TextBlock Text="Datum rodjenja:" Grid.Row="3" VerticalAlignment="Center"/>
-        <DatePicker Grid.Row="3" Grid.Column="1" Margin="5,2,2,2" BorderBrush="#FF333333" BorderThickness="2" 
-                    SelectedDate="{Binding DataContext.CurrentPageViewModel.CurrentPageViewModel.DatumRodjenja, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+        <TextBlock Text="Pol:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+        <ComboBox Name="cboxGender"
+                  Margin="5" 
+                  ItemsSource="{Binding Polovi}"
+                  SelectedItem="{Binding Pol, Mode=TwoWay}"                 
+                  Grid.Column="1" Grid.Row="3">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource PolConverter}}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock Text="Datum rodjenja:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+        <DatePicker Grid.Row="4" Grid.Column="1" Margin="5,2,2,2" BorderBrush="#FF333333" BorderThickness="2" 
+                    SelectedDate="{Binding DatumRodjenja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     Validation.ErrorTemplate="{StaticResource ValidationTemplate1}">
         </DatePicker>
+
+        <TextBlock Text="Otac:" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
+        <ComboBox Name="cboxFather"
+                  Margin="5" 
+                  ItemsSource="{Binding MuskaFizickaLica}"
+                  SelectedItem="{Binding Otac, Mode=TwoWay}"
+                  SelectedIndex="{Binding SelIndex}"
+                  Grid.Column="1" Grid.Row="5">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource OceviCboxConverter}}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+
 
 
 
     </Grid>
 </UserControl>
+<!--SelectedItem="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.Pol, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"-->

@@ -60,9 +60,7 @@ namespace Client.ViewModel
         {
             GenericDataAccessLayer<FizickoLice> dal = new GenericDataAccessLayer<FizickoLice>();
             List<FizickoLice> collFl = dal.GetAll(f => f.Majka, f => f.Otac).ToList();//dal.GetAll().ToList();//
-            ObservableCollection<object> oColl = new ObservableCollection<object>();
-            collFl.ForEach(c => oColl.Add(c));
-            CollectionItems = oColl;
+            CollectionItems = new ObservableCollection<object>(collFl);
         }
 
     }
