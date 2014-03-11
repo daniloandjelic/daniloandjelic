@@ -18,16 +18,20 @@ namespace DataAccessLayer.Factory
             m_DbConnection = dbConnection;
         }
 
+        DbContext result = null;
+
         public DbContext GenerateContext()
         {
             if (m_DbConnection == DatabaseConnection.MasterApp1)
-                return new MasterApp1Entities();
+                result =  new MasterApp1Entities();
             else if (m_DbConnection == DatabaseConnection.MasterApp2)
-                return new MasterApp2Entities();
+                result = new MasterApp2Entities();
             else if (m_DbConnection == DatabaseConnection.MasterApp3)
-                return new MasterApp3Entities();
+                result = new MasterApp3Entities();
 
-            return null;
+            result.Configuration.LazyLoadingEnabled = false;
+
+            return result;
         }
     }
 }

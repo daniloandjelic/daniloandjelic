@@ -59,7 +59,7 @@ namespace Client.ViewModel
         public override void RefreshCollectionOnPage()
         {
             GenericDataAccessLayer<PravnoLice> dal = new GenericDataAccessLayer<PravnoLice>();
-            List<PravnoLice> collFl = dal.GetAll().ToList();
+            List<PravnoLice> collFl = dal.GetAll(pl => pl.IdentifikacioniDokument, pl => pl.IdentifikacioniDokument.Mesto).ToList();
             CollectionItems = new ObservableCollection<object>(collFl);
         }
     }

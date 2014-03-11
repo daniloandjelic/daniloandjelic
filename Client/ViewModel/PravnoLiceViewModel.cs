@@ -138,6 +138,7 @@ namespace Client.ViewModel
                 datumOsnivanja = value;
                 (ObjectToPersist as PravnoLice).DatumOsnivanja = value;
                 OnPropertyChanged("DatumOsnivanja");
+                OnPropertyChanged("ObjectToPersist");
             }
         }
 

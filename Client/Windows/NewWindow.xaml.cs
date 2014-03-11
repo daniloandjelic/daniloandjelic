@@ -48,10 +48,32 @@ namespace Client.Windows
                     this.DataContext = view;
                     if (item != null)
                     {
+                        if (item is FizickoLice)
+                            (view.CurrentPageViewModel as NewUpdateViewModel).PageViewModels.Add(new FizickoLiceViewModel());
+                        else if (item is PravnoLice)
+                            (view.CurrentPageViewModel as NewUpdateViewModel).PageViewModels.Add(new PravnoLiceViewModel());
+
+                        (view.CurrentPageViewModel as NewUpdateViewModel).PageViewModels.Add(new IdentifikacioniDokumentViewModel());
+
+                        Osoba os = item as Osoba;
+                        if (os != null && os.IdentifikacioniDokument == null)
+                            (item as Osoba).IdentifikacioniDokument = new IdentifikacioniDokument();
+
+                        if (os.IdentifikacioniDokument.Mesto == null)
+                            (item as Osoba).IdentifikacioniDokument.Mesto = new Mesto();
+
                         (view.CurrentPageViewModel as PersistableViewModel).ObjectToPersist = item;
-                        ((view.CurrentPageViewModel as PersistableViewModel).CurrentPageViewModel as PersistableViewModel).ObjectToPersist = item;
+                        foreach (var p in (view.CurrentPageViewModel as PersistableViewModel).PageViewModels)
+                        {
+                            PersistableViewModel pers = p as PersistableViewModel;
+                            if (pers != null)
+                                pers.ObjectToPersist = item;
+                            
+                        }
+                        //((view.CurrentPageViewModel as PersistableViewModel).CurrentPageViewModel as PersistableViewModel).ObjectToPersist = item;
                         if (item is FizickoLice)
                         {
+                            
                             FizickoLiceViewModel flmv = (view.CurrentPageViewModel as PersistableViewModel).CurrentPageViewModel as FizickoLiceViewModel;
                             if (flmv != null)
                             {

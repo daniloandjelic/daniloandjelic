@@ -5,13 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="41402739290d4aad8bb1d785aad1c5e5" Name="Diagram1">
-        <EntityTypeShape EntityType="MasterApp1Model.FizickoLice" Width="1.5" PointX="5.375" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MasterApp1Model.Osoba" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MasterApp1Model.PravnoLice" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasterApp1Model.FizickoLice" Width="1.5" PointX="7.125" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasterApp1Model.Osoba" Width="1.5" PointX="5.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasterApp1Model.PravnoLice" Width="1.5" PointX="4.625" PointY="4.25" IsExpanded="true" />
         <InheritanceConnector EntityType="MasterApp1Model.FizickoLice" />
-        <InheritanceConnector EntityType="MasterApp1Model.PravnoLice" />
+        <InheritanceConnector EntityType="MasterApp1Model.PravnoLice" ManuallyRouted="true" >
+          <ConnectorPoint PointX="6.375" PointY="3.2494921874999996" />
+          <ConnectorPoint PointX="6.375" PointY="3.6145833333333339" />
+          <ConnectorPoint PointX="5.375" PointY="3.6145833333333339" />
+          <ConnectorPoint PointX="5.375" PointY="4.25" />
+        </InheritanceConnector>
         <AssociationConnector Association="MasterApp1Model.FK_FizickoLice_Majka" />
         <AssociationConnector Association="MasterApp1Model.FK_FizickoLice_Otac" />
+        <EntityTypeShape EntityType="MasterApp1Model.IdentifikacioniDokument" Width="1.5" PointX="3.125" PointY="0.625" />
+        <EntityTypeShape EntityType="MasterApp1Model.Mesto" Width="1.5" PointX="2.875" PointY="3.875" />
+        <AssociationConnector Association="MasterApp1Model.FK_IdentifikacioniDokument_Mesto" />
+        <AssociationConnector Association="MasterApp1Model.FK_Osoba_IdentifDokument" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

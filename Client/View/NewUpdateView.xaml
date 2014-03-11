@@ -6,7 +6,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-       
+        <TabControl DisplayMemberPath="Name" SelectedIndex="0"
+            ItemsSource="{Binding PageViewModels}">
+            <!--<TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding CurrentPageViewModel.Name}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>-->
+
+            <!--<TabControl.ItemContainerStyle>
+                <Style TargetType="TabItem">
+                    <Setter Property="Header" Value="{Binding CurrentPageViewModel.Name}"/>
+                </Style>
+            </TabControl.ItemContainerStyle>-->
+
+        </TabControl>
 
     </Grid>
 </UserControl>

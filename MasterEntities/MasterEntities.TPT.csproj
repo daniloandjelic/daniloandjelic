@@ -30,8 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,9 +44,15 @@
     <Compile Include="FizickoLice.cs">
       <DependentUpon>MasterApplication1Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="IdentifikacioniDokument.cs">
+      <DependentUpon>MasterApplication1Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="MasterApplication1Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>MasterApplication1Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mesto.cs">
       <DependentUpon>MasterApplication1Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Osoba.cs">

@@ -17,8 +17,10 @@ namespace Client.Converters
                  (?<=[^A-Z])(?=[A-Z]) |
                  (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace);
 
-
-            return r.Replace(value as string, " ");
+            if (value != null)
+                return r.Replace(value.ToString(), " ");
+            else
+                return string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -26,4 +28,5 @@ namespace Client.Converters
             throw new NotImplementedException();
         }
     }
+
 }

@@ -12,8 +12,8 @@ namespace Client.ViewModel
 
         public NewUpdateViewModel()
         {
-            this.PageViewModels.Add(new FizickoLiceViewModel());
-            this.PageViewModels.Add(new PravnoLiceViewModel());
+            //this.PageViewModels.Add(new FizickoLiceViewModel());
+            //this.PageViewModels.Add(new PravnoLiceViewModel());
         }
         public string Name
         {

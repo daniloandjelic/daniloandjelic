@@ -13,5 +13,12 @@ namespace Client.Enums
             M,
             Z
         }
+
+        public enum TipIdentifikacionogDokumenta
+        {
+            LicnaKarta,
+            Pasos,
+            VozackaDozvola
+        }
     }
 }

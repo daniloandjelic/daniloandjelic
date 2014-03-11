@@ -7,6 +7,8 @@
     <Schema Namespace="MasterApp1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="MasterApp1ModelStoreContainer">
           <EntitySet Name="FizickoLice" EntityType="MasterApp1Model.Store.FizickoLice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="IdentifikacioniDokument" EntityType="MasterApp1Model.Store.IdentifikacioniDokument" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Mesto" EntityType="MasterApp1Model.Store.Mesto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Osoba" EntityType="MasterApp1Model.Store.Osoba" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PravnoLice" EntityType="MasterApp1Model.Store.PravnoLice" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_FizickoLice_Majka" Association="MasterApp1Model.Store.FK_FizickoLice_Majka">
@@ -20,6 +22,14 @@
           <AssociationSet Name="FK_FizickoLice_Otac" Association="MasterApp1Model.Store.FK_FizickoLice_Otac">
             <End Role="FizickoLice" EntitySet="FizickoLice" />
             <End Role="FizickoLice1" EntitySet="FizickoLice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentifikacioniDokument_Mesto" Association="MasterApp1Model.Store.FK_IdentifikacioniDokument_Mesto">
+            <End Role="Mesto" EntitySet="Mesto" />
+            <End Role="IdentifikacioniDokument" EntitySet="IdentifikacioniDokument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Osoba_IdentifDokument" Association="MasterApp1Model.Store.FK_Osoba_IdentifDokument">
+            <End Role="IdentifikacioniDokument" EntitySet="IdentifikacioniDokument" />
+            <End Role="Osoba" EntitySet="Osoba" />
           </AssociationSet>
           <AssociationSet Name="FK_PravnoLice_Osoba" Association="MasterApp1Model.Store.FK_PravnoLice_Osoba">
             <End Role="Osoba" EntitySet="Osoba" />
@@ -37,6 +47,24 @@
           <Property Name="Pol" Type="varchar" MaxLength="10" />
           <Property Name="OtacId" Type="bigint" />
           <Property Name="MajkaId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="IdentifikacioniDokument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" />
+          <Property Name="BrojIdentifikacionogDokumenta" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="MestoIzdavanjaId" Type="bigint" />
+          <Property Name="VaziDo" Type="datetime" />
+          <Property Name="VaziOd" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Mesto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Osoba">
           <Key>
@@ -96,6 +124,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_IdentifikacioniDokument_Mesto">
+          <End Role="Mesto" Type="MasterApp1Model.Store.Mesto" Multiplicity="0..1" />
+          <End Role="IdentifikacioniDokument" Type="MasterApp1Model.Store.IdentifikacioniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentifikacioniDokument">
+              <PropertyRef Name="MestoIzdavanjaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Osoba_IdentifDokument">
+          <End Role="IdentifikacioniDokument" Type="MasterApp1Model.Store.IdentifikacioniDokument" Multiplicity="0..1" />
+          <End Role="Osoba" Type="MasterApp1Model.Store.Osoba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentifikacioniDokument">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Osoba">
+              <PropertyRef Name="IdentifikacioniDokumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PravnoLice_Osoba">
           <End Role="Osoba" Type="MasterApp1Model.Store.Osoba" Multiplicity="1" />
           <End Role="PravnoLice" Type="MasterApp1Model.Store.PravnoLice" Multiplicity="0..1" />
@@ -122,6 +174,16 @@
             <End Role="FizickoLice" EntitySet="Osoba" />
             <End Role="FizickoLice1" EntitySet="Osoba" />
           </AssociationSet>
+          <EntitySet Name="IdentifikacioniDokument" EntityType="MasterApp1Model.IdentifikacioniDokument" />
+          <EntitySet Name="Mesto" EntityType="MasterApp1Model.Mesto" />
+          <AssociationSet Name="FK_IdentifikacioniDokument_Mesto" Association="MasterApp1Model.FK_IdentifikacioniDokument_Mesto">
+            <End Role="Mesto" EntitySet="Mesto" />
+            <End Role="IdentifikacioniDokument" EntitySet="IdentifikacioniDokument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Osoba_IdentifDokument" Association="MasterApp1Model.FK_Osoba_IdentifDokument">
+            <End Role="IdentifikacioniDokument" EntitySet="IdentifikacioniDokument" />
+            <End Role="Osoba" EntitySet="Osoba" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="FizickoLice" BaseType="MasterApp1Model.Osoba">
           <Property Name="Ime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
@@ -145,6 +207,7 @@
           <Property Name="Jezik" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="IdentifikacioniDokumentId" Type="Int64" />
           <Property Type="Binary" Name="Slika" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="IdentifikacioniDokument" Relationship="MasterApp1Model.FK_Osoba_IdentifDokument" FromRole="Osoba" ToRole="IdentifikacioniDokument" />
         </EntityType>
         <EntityType Name="PravnoLice" BaseType="MasterApp1Model.Osoba">
           <Property Name="PunoIme" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
@@ -172,6 +235,51 @@
             </Principal>
             <Dependent Role="FizickoLice1">
               <PropertyRef Name="OtacId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="IdentifikacioniDokument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Naziv" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BrojIdentifikacionogDokumenta" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="MestoIzdavanjaId" />
+          <Property Type="DateTime" Name="VaziDo" Precision="3" />
+          <Property Type="DateTime" Name="VaziOd" Precision="3" />
+          <NavigationProperty Name="Mesto" Relationship="MasterApp1Model.FK_IdentifikacioniDokument_Mesto" FromRole="IdentifikacioniDokument" ToRole="Mesto" />
+          <NavigationProperty Name="Osoba" Relationship="MasterApp1Model.FK_Osoba_IdentifDokument" FromRole="IdentifikacioniDokument" ToRole="Osoba" />
+        </EntityType>
+        <EntityType Name="Mesto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Naziv" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="IdentifikacioniDokument" Relationship="MasterApp1Model.FK_IdentifikacioniDokument_Mesto" FromRole="Mesto" ToRole="IdentifikacioniDokument" />
+        </EntityType>
+        <Association Name="FK_IdentifikacioniDokument_Mesto">
+          <End Type="MasterApp1Model.Mesto" Role="Mesto" Multiplicity="0..1" />
+          <End Type="MasterApp1Model.IdentifikacioniDokument" Role="IdentifikacioniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentifikacioniDokument">
+              <PropertyRef Name="MestoIzdavanjaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Osoba_IdentifDokument">
+          <End Type="MasterApp1Model.IdentifikacioniDokument" Role="IdentifikacioniDokument" Multiplicity="0..1" />
+          <End Type="MasterApp1Model.Osoba" Role="Osoba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentifikacioniDokument">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Osoba">
+              <PropertyRef Name="IdentifikacioniDokumentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -210,6 +318,26 @@
                 <ScalarProperty Name="PIB" ColumnName="PIB" />
                 <ScalarProperty Name="DatumOsnivanja" ColumnName="DatumOsnivanja" />
                 <ScalarProperty Name="PunoIme" ColumnName="PunoIme" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentifikacioniDokument">
+            <EntityTypeMapping TypeName="MasterApp1Model.IdentifikacioniDokument">
+              <MappingFragment StoreEntitySet="IdentifikacioniDokument">
+                <ScalarProperty Name="VaziOd" ColumnName="VaziOd" />
+                <ScalarProperty Name="VaziDo" ColumnName="VaziDo" />
+                <ScalarProperty Name="MestoIzdavanjaId" ColumnName="MestoIzdavanjaId" />
+                <ScalarProperty Name="BrojIdentifikacionogDokumenta" ColumnName="BrojIdentifikacionogDokumenta" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesto">
+            <EntityTypeMapping TypeName="MasterApp1Model.Mesto">
+              <MappingFragment StoreEntitySet="Mesto">
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

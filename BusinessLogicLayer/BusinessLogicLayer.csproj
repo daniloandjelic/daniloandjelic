@@ -43,7 +43,9 @@
     <Compile Include="AbstractBusinessRuleChecker.cs" />
     <Compile Include="Implementations\FizickoLiceBusinessLayerImplementation.cs" />
     <Compile Include="IBusinessLayerFacade.cs" />
+    <Compile Include="Implementations\IdentifikacioniDokumentBusinessLayerImplementation.cs" />
     <Compile Include="Implementations\PravnoLiceBusinessLayerImplementation.cs" />
+    <Compile Include="KeyGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

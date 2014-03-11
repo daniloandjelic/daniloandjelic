@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             MinWidth="600">
     <Grid TextElement.Foreground="DarkBlue" TextElement.FontSize="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -25,7 +26,7 @@
         <TextBox Text="{Binding IdentifikacioniBroj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                  Grid.Column="1" Grid.Row="1" Validation.ErrorTemplate="{StaticResource ValidationTemplate1}"/>
 
-        <TextBlock Text="Datum osivanja:" Grid.Row="2" VerticalAlignment="Center"/>
+        <TextBlock Text="Datum osnivanja:" Grid.Row="2" VerticalAlignment="Center"/>
         <DatePicker Grid.Row="2" Grid.Column="1" Margin="5,2,2,2" BorderBrush="#FF333333" BorderThickness="2" 
                     SelectedDate="{Binding DatumOsnivanja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     Validation.ErrorTemplate="{StaticResource ValidationTemplate1}">

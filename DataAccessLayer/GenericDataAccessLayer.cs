@@ -70,33 +70,31 @@ namespace DataAccessLayer
             return result;
         }
 
-        public virtual void Create(params T[] objectsToCreate)
+        public virtual void Create(T item)
         {
-            Update(EntityState.Added, objectsToCreate);
-        }
-
-        public virtual void Update(EntityState entityState, params T[] objectsToUpdate)
-        {
-            using (var ctx = contextFactory.GenerateContext())
+            using (var context = contextFactory.GenerateContext())
             {
-                DbSet<T> dbSet = ctx.Set<T>();
-
-                foreach (T ob in objectsToUpdate)
-                {
-                    dbSet.Add(ob);
-                    foreach (DbEntityEntry<T> item in ctx.ChangeTracker.Entries<T>())
-                    {
-                        if (item != null)
-                            item.State = entityState;
-                    }
-                }
-                ctx.SaveChanges();
+                context.Entry(item).State = System.Data.EntityState.Added;
+                context.SaveChanges();
             }
         }
 
-        public virtual void Delete(params T[] objectsToDelete)
+        public virtual void Update(T item)
         {
-            Update(EntityState.Deleted, objectsToDelete);
+            using (var context = contextFactory.GenerateContext())
+            {
+                context.Entry(item).State = System.Data.EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public virtual void Delete(T item)
+        {
+            using (var context = contextFactory.GenerateContext())
+            {
+                context.Entry(item).State = System.Data.EntityState.Deleted;
+                context.SaveChanges();
+            }
         }
     }
 }

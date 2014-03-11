@@ -84,6 +84,7 @@
     <Compile Include="ViewModel\FizickoLiceViewModel.cs" />
     <Compile Include="ViewModel\HierarchicalViewTemplate\ChildsViewModel.cs" />
     <Compile Include="Framework\TreeViewItemViewModel.cs" />
+    <Compile Include="ViewModel\IdentifikacioniDokumentViewModel.cs" />
     <Compile Include="ViewModel\RecursiveViewModel.cs" />
     <Compile Include="ViewModel\StartingViewModel.cs" />
     <Compile Include="ViewModel\WindowViewModels\MainWindowViewModel.cs" />
@@ -107,6 +108,9 @@
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\HomeViewModel.cs" />
+    <Compile Include="View\IdentifikacioniDokumentView.xaml.cs">
+      <DependentUpon>IdentifikacioniDokumentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NewUpdateView.xaml.cs">
       <DependentUpon>NewUpdateView.xaml</DependentUpon>
     </Compile>
@@ -154,6 +158,10 @@
     <Page Include="View\HomeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\IdentifikacioniDokumentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RecursiveView.xaml">
       <SubType>Designer</SubType>

@@ -62,7 +62,8 @@
         </Grid>
 
 
-        <ContentControl Grid.Row="2" Grid.RowSpan="5" Content="{Binding CurrentPageViewModel.CurrentPageViewModel}" Margin="10,10,5,10"/>
+        <ContentControl Grid.Row="2" Grid.RowSpan="5" HorizontalContentAlignment="Stretch" Content="{Binding CurrentPageViewModel}" Margin="10,10,5,10"/>
+        <!--<ContentControl Grid.Row="2" Grid.RowSpan="5" Content="{Binding CurrentPageViewModel.CurrentPageViewModel}" Margin="10,10,5,10"/>-->
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />

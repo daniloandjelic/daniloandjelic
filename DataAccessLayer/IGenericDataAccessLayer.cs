@@ -13,8 +13,8 @@ namespace DataAccessLayer
         IList<T> GetAll(params Expression<Func<T, object>>[] navigationProperties);
         IList<T> GetList(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties);
         T GetEntity(Func<T, bool> where, params Expression<Func<T, object>>[] navigationProperties);
-        void Create(params T[] objectsToCreate);
-        void Update(EntityState entityState, params T[] objectsToUpdate);
-        void Delete(params T[] objectsToDelete);
+        void Create(T objectToCreate);
+        void Update(T objectToUpdate);
+        void Delete(T objectToDelete);
     }
 }

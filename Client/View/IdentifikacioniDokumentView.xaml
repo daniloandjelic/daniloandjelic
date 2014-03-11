@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="Client.View.IdentifikacioniDokumentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:Client.Converters"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             MinWidth="600">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:ComboBoxItemConverter x:Key="DocumentTypeConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid TextElement.Foreground="DarkBlue" TextElement.FontSize="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock Text="Broj identifikacionog dokumenta:" Grid.Column="0"/>
+        <TextBox  Text="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.IdentifikacioniDokument.BrojIdentifikacionogDokumenta, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" Grid.Column="1" /> 
+
+        <TextBlock Text="Vazi od:" Grid.Row="1"/>
+        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.IdentifikacioniDokument.VaziOd, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}"/>
+
+        <TextBlock Text="Vazi do:" Grid.Row="2"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.IdentifikacioniDokument.VaziDo, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}"/>
+
+        <!--<TextBlock Text="Mesto izdavanja :" Grid.Row="3" />
+        <TextBox Text="{Binding DataContext.CurrentPageViewModel.ObjectToPersist.IdentifikacioniDokument.MestoIzdavanjaId, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" />-->
+
+        <TextBlock Text="Mesto izdavanja :" Grid.Row="3"  Grid.Column="0" VerticalAlignment="Center"/>
+        <ComboBox Name="cboxMestoIzdavanja"
+                  Margin="5" 
+                  ItemsSource="{Binding MestaIzdavanjaDokumenata}"
+                  SelectedItem="{Binding MestoIzdavanja, Mode=TwoWay}"                 
+                  Grid.Column="1" 
+                  Grid.Row="3"
+                  DisplayMemberPath="Naziv"
+                  SelectedIndex="{Binding SelIndexMesto}"
+                  >
+        </ComboBox>
+
+        <TextBlock Text="Tip dokumenta:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+        <ComboBox Name="cboxDocumentType"
+                  Margin="5" 
+                  ItemsSource="{Binding TipoviDokumenata}"
+                  SelectedItem="{Binding Naziv, Mode=TwoWay}"                 
+                  Grid.Column="1" 
+                  Grid.Row="4"
+                  SelectedIndex="{Binding SelIndexTip}"
+                  >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource DocumentTypeConverter}}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+
+    </Grid>
+</UserControl>

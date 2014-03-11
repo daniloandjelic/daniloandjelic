@@ -33,4 +33,7 @@
     <DataTemplate DataType="{x:Type vm:ChildParentViewModel}">
         <view:ChildParentView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:IdentifikacioniDokumentViewModel}">
+        <view:IdentifikacioniDokumentView/>
+    </DataTemplate>
 </ResourceDictionary>
