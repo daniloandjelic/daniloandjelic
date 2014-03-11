@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:Client.Converters"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        Height="600" Width="800"
+        Height="650" Width="800"
         Background="{StaticResource NewPageBackground}" 
         WindowStartupLocation="CenterScreen">
 

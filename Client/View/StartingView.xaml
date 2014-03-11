@@ -4,19 +4,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <StackPanel>
-            <GroupBox Header="Izaberite bazu podataka" FontSize="18" VerticalAlignment="Top" Margin="5,10,5,10">
+            <GroupBox Header="Izaberite bazu podataka" FontSize="18" VerticalAlignment="Top" Margin="5,10,5,10" MaxWidth="600" MinHeight="450">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <RadioButton Grid.Row="0" GroupName="Databases" Content="MasterApp1" IsChecked="{Binding IsMasterApp1}"/>
-                    <RadioButton Grid.Row="1" GroupName="Databases" Content="MasterApp2" IsChecked="{Binding IsMasterApp2}"/>
-                    <RadioButton Grid.Row="2" GroupName="Databases" Content="MasterApp3" IsChecked="{Binding IsMasterApp3}"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Grid.Column="0" Grid.Row="0" GroupName="Databases" Content="MasterApp1" IsChecked="{Binding IsMasterApp1}" VerticalAlignment="Center"/>
+                    <RadioButton Grid.Column="0" Grid.Row="1" GroupName="Databases" Content="MasterApp2" IsChecked="{Binding IsMasterApp2}" VerticalAlignment="Center"/>
+                    <RadioButton Grid.Column="0" Grid.Row="2" GroupName="Databases" Content="MasterApp3" IsChecked="{Binding IsMasterApp3}" VerticalAlignment="Center"/>
+
+                    <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Height="120" HorizontalAlignment="Stretch"  VerticalAlignment="Top"  Foreground="White"  AcceptsReturn="True" TextWrapping="Wrap">
+                        Hijerarhija nasleđivanja implementirana metodom TPT - svaka konceptualna klasa ima odgovarajuću tabelu u bazi podataka. Implementirana je hijerarhija u vidu rekurzivne veze.
+                    </TextBox> 
+
+                    <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Height="120" HorizontalAlignment="Stretch"  VerticalAlignment="Top"  Foreground="White" AcceptsReturn="True" TextWrapping="Wrap" >
+                        Hijerarhija nasleđivanja implementirana metodom TPC - izvedene klase imaju svoju tabelu - tačnije, samo ,,listovi'' u strukturi nasleđivanja imaju tabele. Implementirana je hijerarhija u vidu rekurzivne veze.
+                    </TextBox> 
+                            
+
+                    <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Height="120" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Foreground="White"  AcceptsReturn="True" TextWrapping="Wrap">
+                        Hijerarhija nasleđivanja implementirana metodom TPH - čitava hijerarhija nasleđivanja se nalazi u jednoj tabeli. Implementirana je hijerarhija u vidu rekurzivne veze.
+                    </TextBox>
                 </Grid>
             </GroupBox>
             <GroupBox Header="Izaberite sloj pristupa podatacima" FontSize="18" VerticalAlignment="Top" Margin="5,10,5,10">
