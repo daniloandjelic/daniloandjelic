@@ -39,7 +39,7 @@
                     </TextBox>
                 </Grid>
             </GroupBox>
-            <GroupBox Header="Izaberite sloj pristupa podatacima" FontSize="18" VerticalAlignment="Top" Margin="5,10,5,10">
+            <GroupBox Header="Izaberite sloj pristupa podacima" FontSize="18" VerticalAlignment="Top" Margin="5,10,5,10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
