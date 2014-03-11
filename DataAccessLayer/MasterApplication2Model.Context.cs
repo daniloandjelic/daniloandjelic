@@ -26,5 +26,7 @@ namespace MasterEntities
         }
     
         public DbSet<Osoba> OsobaSet { get; set; }
+        public DbSet<IdentifikacioniDokument> IdentifikacioniDokument { get; set; }
+        public DbSet<Mesto> Mesto { get; set; }
     }
 }

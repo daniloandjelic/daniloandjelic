@@ -63,11 +63,10 @@ namespace BusinessLogicLayer.Implementations
                         IGenericDataAccessLayer<Mesto> mDal = new GenericDataAccessLayer<Mesto>();
                         Mesto mesto = mDal.GetEntity(m => m.Naziv == objToUpdate.IdentifikacioniDokument.Mesto.Naziv, null);
                         if (mesto != null)
-                            objToUpdate.IdentifikacioniDokument.MestoIzdavanjaId = mesto.Id;
-
-                        objToUpdate.IdentifikacioniDokument.Mesto = null;
+                            objToUpdate.IdentifikacioniDokument.MestoIzdavanjaId = mesto.Id;                       
                     }
 
+                    objToUpdate.IdentifikacioniDokument.Mesto = null;
                     identDal = new GenericDataAccessLayer<IdentifikacioniDokument>();
                     IdentifikacioniDokument identDok = identDal.GetEntity(fl => fl.Id == objToUpdate.IdentifikacioniDokument.Id);
                     long identifId = objToUpdate.IdentifikacioniDokument.Id;

@@ -52,6 +52,9 @@ namespace BusinessLogicLayer.Implementations
                     IdentifikacioniDokument identDok = dal.GetEntity(fl => fl.Id == objToUpdate.IdentifikacioniDokument.Id);
                     long identifId = objToUpdate.IdentifikacioniDokument.Id;
 
+                    objToUpdate.IdentifikacioniDokument.Osoba = null;
+                    objToUpdate.IdentifikacioniDokument.Mesto = null;
+
                     if (identDok != null)
                         dal.Update(objToUpdate.IdentifikacioniDokument);
                     else // ovo treba izbrisati kada se obezbede podaci

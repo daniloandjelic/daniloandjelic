@@ -283,9 +283,6 @@ namespace Client.ViewModel
             if (fl != null && fl.Otac != null)
             {
                 SelIndexOtac = GetIndexFromCollection(MuskaFizickaLica, (ObjectToPersist as FizickoLice).OtacId);
-                    //MuskaFizickaLica.Select((c, i) => new { FizickoLice = c, Index = i })
-                    //                         .Where(x => x.FizickoLice.Id == (ObjectToPersist as FizickoLice).OtacId)
-                    //                         .Select(x => x.Index as int?).FirstOrDefault();
             }
         }
 

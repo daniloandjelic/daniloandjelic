@@ -12,17 +12,16 @@ namespace MasterEntities
     using System;
     using System.Collections.Generic;
     
-    public abstract partial class Osoba
+    public partial class Mesto
     {
+        public Mesto()
+        {
+            this.IdentifikacioniDokument = new HashSet<IdentifikacioniDokument>();
+        }
+    
         public long Id { get; set; }
         public string Naziv { get; set; }
-        public Nullable<System.DateTime> VremeKreiranja { get; set; }
-        public Nullable<bool> Rezident { get; set; }
-        public string IdentifikacioniBroj { get; set; }
-        public string Jezik { get; set; }
-        public byte[] Slika { get; set; }
-        public Nullable<long> IdentifikacioniDokumentId { get; set; }
     
-        public virtual IdentifikacioniDokument IdentifikacioniDokument { get; set; }
+        public virtual ICollection<IdentifikacioniDokument> IdentifikacioniDokument { get; set; }
     }
 }

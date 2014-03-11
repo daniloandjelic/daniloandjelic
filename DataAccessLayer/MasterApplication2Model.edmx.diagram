@@ -5,13 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="dbe71466d45e4f3485bd107bd11635df" Name="Diagram1">
-        <EntityTypeShape EntityType="MasterEntities.FizickoLice" Width="1.5" PointX="5.125" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MasterEntities.PravnoLice" Width="1.5" PointX="9.875" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MasterEntities.Osoba" Width="1.5" PointX="7.25" PointY="1" />
+        <EntityTypeShape EntityType="MasterEntities.FizickoLice" Width="1.5" PointX="3.875" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasterEntities.PravnoLice" Width="1.5" PointX="8" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasterEntities.Osoba" Width="2.625" PointX="6" PointY="0.75" />
         <InheritanceConnector EntityType="MasterEntities.FizickoLice" />
         <InheritanceConnector EntityType="MasterEntities.PravnoLice" />
         <AssociationConnector Association="MasterEntities.FK_FizickoLice_Majka" />
         <AssociationConnector Association="MasterEntities.FK_FizickoLice_Otac" />
+        <EntityTypeShape EntityType="MasterEntities.IdentifikacioniDokument" PointX="10.625" PointY="1" Width="1.5" />
+        <EntityTypeShape EntityType="MasterEntities.Mesto" Width="1.5" PointX="11.75" PointY="5" />
+        <AssociationConnector Association="MasterEntities.FK_IdentifikacioniDokument_Mesto" />
+        <AssociationConnector Association="MasterEntities.IdentifikacioniDokumentOsoba" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

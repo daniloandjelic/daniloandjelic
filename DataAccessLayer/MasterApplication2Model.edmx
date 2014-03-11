@@ -4,55 +4,89 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MasterEntities.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="MasterEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008">
         <EntityContainer Name="MasterEntitiesStoreContainer">
-          <EntitySet Name="FizickoLice" EntityType="MasterEntities.Store.FizickoLice" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PravnoLice" EntityType="MasterEntities.Store.PravnoLice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FizickoLice" EntityType="MasterEntities.Store.FizickoLice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentifikacioniDokument" EntityType="MasterEntities.Store.IdentifikacioniDokument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesto" EntityType="MasterEntities.Store.Mesto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PravnoLice" EntityType="MasterEntities.Store.PravnoLice" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_FizickoLice_Majka" Association="MasterEntities.Store.FK_FizickoLice_Majka">
-            <End Role="FizickoLice" EntitySet="FizickoLice" />
-            <End Role="FizickoLice1" EntitySet="FizickoLice" />
+            <End EntitySet="FizickoLice" Role="FizickoLice" />
+            <End EntitySet="FizickoLice" Role="FizickoLice1" />
           </AssociationSet>
           <AssociationSet Name="FK_FizickoLice_Otac" Association="MasterEntities.Store.FK_FizickoLice_Otac">
-            <End Role="FizickoLice" EntitySet="FizickoLice" />
-            <End Role="FizickoLice1" EntitySet="FizickoLice" />
+            <End EntitySet="FizickoLice" Role="FizickoLice" />
+            <End EntitySet="FizickoLice" Role="FizickoLice1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FL_IdentifDokument" Association="MasterEntities.Store.FK_FL_IdentifDokument">
+            <End EntitySet="IdentifikacioniDokument" Role="IdentifikacioniDokument" />
+            <End EntitySet="FizickoLice" Role="FizickoLice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdentifikacioniDokument_Mesto" Association="MasterEntities.Store.FK_IdentifikacioniDokument_Mesto">
+            <End EntitySet="Mesto" Role="Mesto" />
+            <End EntitySet="IdentifikacioniDokument" Role="IdentifikacioniDokument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PL_IdentifDokument" Association="MasterEntities.Store.FK_PL_IdentifDokument">
+            <End EntitySet="IdentifikacioniDokument" Role="IdentifikacioniDokument" />
+            <End EntitySet="PravnoLice" Role="PravnoLice" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="FizickoLice">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="bigint" Nullable="false" />
-          <Property Name="Naziv" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Nullable="false" Type="bigint" />
+          <Property Name="Naziv" MaxLength="50" Type="varchar" />
           <Property Name="VremeKreiranja" Type="datetime" />
           <Property Name="Rezident" Type="bit" />
-          <Property Name="IdentifikacioniBroj" Type="varchar" MaxLength="20" />
-          <Property Name="Jezik" Type="varchar" MaxLength="20" />
-          <Property Name="Ime" Type="varchar" MaxLength="50" />
-          <Property Name="Prezime" Type="varchar" MaxLength="50" />
+          <Property Name="IdentifikacioniBroj" MaxLength="20" Type="varchar" />
+          <Property Name="Jezik" MaxLength="20" Type="varchar" />
+          <Property Name="Ime" MaxLength="50" Type="varchar" />
+          <Property Name="Prezime" MaxLength="50" Type="varchar" />
           <Property Name="DatumRodjenja" Type="datetime" />
-          <Property Name="Pol" Type="varchar" MaxLength="10" />
+          <Property Name="Pol" MaxLength="10" Type="varchar" />
           <Property Name="OtacId" Type="bigint" />
           <Property Name="MajkaId" Type="bigint" />
           <Property Name="Slika" Type="image" />
+          <Property Name="IdentifikacioniDokumentId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="IdentifikacioniDokument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="bigint" />
+          <Property Name="Naziv" MaxLength="50" Type="varchar" />
+          <Property Name="BrojIdentifikacionogDokumenta" Nullable="false" MaxLength="50" Type="varchar" />
+          <Property Name="MestoIzdavanjaId" Type="bigint" />
+          <Property Name="VaziDo" Type="datetime" />
+          <Property Name="VaziOd" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Mesto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="bigint" />
+          <Property Name="Naziv" MaxLength="100" Type="varchar" />
         </EntityType>
         <EntityType Name="PravnoLice">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="bigint" Nullable="false" />
-          <Property Name="Naziv" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Nullable="false" Type="bigint" />
+          <Property Name="Naziv" MaxLength="50" Type="varchar" />
           <Property Name="VremeKreiranja" Type="datetime" />
           <Property Name="Rezident" Type="bit" />
-          <Property Name="IdentifikacioniBroj" Type="varchar" MaxLength="20" />
-          <Property Name="Jezik" Type="varchar" MaxLength="20" />
-          <Property Name="PunoIme" Type="varchar" MaxLength="10" />
+          <Property Name="IdentifikacioniBroj" MaxLength="20" Type="varchar" />
+          <Property Name="Jezik" MaxLength="20" Type="varchar" />
+          <Property Name="PunoIme" MaxLength="10" Type="varchar" />
           <Property Name="DatumOsnivanja" Type="datetime" />
-          <Property Name="PIB" Type="varchar" MaxLength="20" />
+          <Property Name="PIB" MaxLength="20" Type="varchar" />
           <Property Name="Slika" Type="image" />
+          <Property Name="IdentifikacioniDokumentId" Type="bigint" />
         </EntityType>
         <Association Name="FK_FizickoLice_Majka">
-          <End Role="FizickoLice" Type="MasterEntities.Store.FizickoLice" Multiplicity="0..1" />
-          <End Role="FizickoLice1" Type="MasterEntities.Store.FizickoLice" Multiplicity="*" />
+          <End Type="MasterEntities.Store.FizickoLice" Multiplicity="0..1" Role="FizickoLice" />
+          <End Type="MasterEntities.Store.FizickoLice" Multiplicity="*" Role="FizickoLice1" />
           <ReferentialConstraint>
             <Principal Role="FizickoLice">
               <PropertyRef Name="Id" />
@@ -63,14 +97,50 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FizickoLice_Otac">
-          <End Role="FizickoLice" Type="MasterEntities.Store.FizickoLice" Multiplicity="0..1" />
-          <End Role="FizickoLice1" Type="MasterEntities.Store.FizickoLice" Multiplicity="*" />
+          <End Type="MasterEntities.Store.FizickoLice" Multiplicity="0..1" Role="FizickoLice" />
+          <End Type="MasterEntities.Store.FizickoLice" Multiplicity="*" Role="FizickoLice1" />
           <ReferentialConstraint>
             <Principal Role="FizickoLice">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="FizickoLice1">
               <PropertyRef Name="OtacId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FL_IdentifDokument">
+          <End Type="MasterEntities.Store.IdentifikacioniDokument" Multiplicity="0..1" Role="IdentifikacioniDokument" />
+          <End Type="MasterEntities.Store.FizickoLice" Multiplicity="*" Role="FizickoLice" />
+          <ReferentialConstraint>
+            <Principal Role="IdentifikacioniDokument">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FizickoLice">
+              <PropertyRef Name="IdentifikacioniDokumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdentifikacioniDokument_Mesto">
+          <End Type="MasterEntities.Store.Mesto" Multiplicity="0..1" Role="Mesto" />
+          <End Type="MasterEntities.Store.IdentifikacioniDokument" Multiplicity="*" Role="IdentifikacioniDokument" />
+          <ReferentialConstraint>
+            <Principal Role="Mesto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentifikacioniDokument">
+              <PropertyRef Name="MestoIzdavanjaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PL_IdentifDokument">
+          <End Type="MasterEntities.Store.IdentifikacioniDokument" Multiplicity="0..1" Role="IdentifikacioniDokument" />
+          <End Type="MasterEntities.Store.PravnoLice" Multiplicity="*" Role="PravnoLice" />
+          <ReferentialConstraint>
+            <Principal Role="IdentifikacioniDokument">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PravnoLice">
+              <PropertyRef Name="IdentifikacioniDokumentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -87,6 +157,16 @@
           <AssociationSet Name="FK_FizickoLice_Otac" Association="MasterEntities.FK_FizickoLice_Otac">
             <End Role="FizickoLice" EntitySet="OsobaSet" />
             <End Role="FizickoLice1" EntitySet="OsobaSet" />
+          </AssociationSet>
+          <EntitySet Name="IdentifikacioniDokument" EntityType="MasterEntities.IdentifikacioniDokument" />
+          <EntitySet Name="Mesto" EntityType="MasterEntities.Mesto" />
+          <AssociationSet Name="FK_IdentifikacioniDokument_Mesto" Association="MasterEntities.FK_IdentifikacioniDokument_Mesto">
+            <End EntitySet="Mesto" Role="Mesto" />
+            <End EntitySet="IdentifikacioniDokument" Role="IdentifikacioniDokument" />
+          </AssociationSet>
+          <AssociationSet Name="IdentifikacioniDokumentOsoba" Association="MasterEntities.IdentifikacioniDokumentOsoba">
+            <End Role="IdentifikacioniDokument" EntitySet="IdentifikacioniDokument" />
+            <End Role="Osoba" EntitySet="OsobaSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="FizickoLice" BaseType="MasterEntities.Osoba">
@@ -115,6 +195,8 @@
           <Property Type="String" Name="IdentifikacioniBroj" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Jezik" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Binary" Name="Slika" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int64" Name="IdentifikacioniDokumentId" />
+          <NavigationProperty Name="IdentifikacioniDokument" Relationship="MasterEntities.IdentifikacioniDokumentOsoba" FromRole="Osoba" ToRole="IdentifikacioniDokument" />
         </EntityType>
         <Association Name="FK_FizickoLice_Majka">
           <End Type="MasterEntities.FizickoLice" Role="FizickoLice" Multiplicity="0..1" />
@@ -140,6 +222,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="IdentifikacioniDokument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="Int64" />
+          <Property Name="Naziv" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="BrojIdentifikacionogDokumenta" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="MestoIzdavanjaId" Type="Int64" />
+          <Property Name="VaziDo" Precision="3" Type="DateTime" />
+          <Property Name="VaziOd" Precision="3" Type="DateTime" />
+          <NavigationProperty Name="Mesto" Relationship="MasterEntities.FK_IdentifikacioniDokument_Mesto" FromRole="IdentifikacioniDokument" ToRole="Mesto" />
+          <NavigationProperty Name="Osoba" Relationship="MasterEntities.IdentifikacioniDokumentOsoba" FromRole="IdentifikacioniDokument" ToRole="Osoba" />
+        </EntityType>
+        <EntityType Name="Mesto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Naziv" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="IdentifikacioniDokument" Relationship="MasterEntities.FK_IdentifikacioniDokument_Mesto" FromRole="Mesto" ToRole="IdentifikacioniDokument" />
+        </EntityType>
+        <Association Name="FK_IdentifikacioniDokument_Mesto">
+          <End Type="MasterEntities.Mesto" Multiplicity="0..1" Role="Mesto" />
+          <End Type="MasterEntities.IdentifikacioniDokument" Multiplicity="*" Role="IdentifikacioniDokument" />
+          <ReferentialConstraint>
+            <Principal Role="Mesto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentifikacioniDokument">
+              <PropertyRef Name="MestoIzdavanjaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IdentifikacioniDokumentOsoba">
+          <End Type="MasterEntities.IdentifikacioniDokument" Role="IdentifikacioniDokument" Multiplicity="0..1" />
+          <End Type="MasterEntities.Osoba" Role="Osoba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentifikacioniDokument">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Osoba">
+              <PropertyRef Name="IdentifikacioniDokumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -147,7 +274,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MasterEntitiesStoreContainer" CdmEntityContainer="MasterApp2Entities">
           <EntitySetMapping Name="OsobaSet">
-            <EntityTypeMapping TypeName="IsTypeOf(MasterEntities.FizickoLice)">
+            <EntityTypeMapping TypeName="IsTypeOf(MasterEntities.FizickoLice)">  
               <MappingFragment StoreEntitySet="FizickoLice">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Naziv" ColumnName="Naziv" />
@@ -159,9 +286,10 @@
                 <ScalarProperty Name="DatumRodjenja" ColumnName="DatumRodjenja" />
                 <ScalarProperty Name="Prezime" ColumnName="Prezime" />
                 <ScalarProperty Name="Ime" ColumnName="Ime" />
-                <ScalarProperty Name="Slika" ColumnName="Slika"/>
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
                 <ScalarProperty Name="MajkaId" ColumnName="MajkaId" />
                 <ScalarProperty Name="OtacId" ColumnName="OtacId" />
+                <ScalarProperty Name="IdentifikacioniDokumentId" ColumnName="IdentifikacioniDokumentId" />
               </MappingFragment>
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(MasterEntities.PravnoLice)">
@@ -172,10 +300,31 @@
                 <ScalarProperty Name="Rezident" ColumnName="Rezident" />
                 <ScalarProperty Name="IdentifikacioniBroj" ColumnName="IdentifikacioniBroj" />
                 <ScalarProperty Name="Jezik" ColumnName="Jezik" />
-                <ScalarProperty Name="Slika" ColumnName="Slika"/>
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
                 <ScalarProperty Name="PIB" ColumnName="PIB" />
                 <ScalarProperty Name="DatumOsnivanja" ColumnName="DatumOsnivanja" />
                 <ScalarProperty Name="PunoIme" ColumnName="PunoIme" />
+                <ScalarProperty Name="IdentifikacioniDokumentId" ColumnName="IdentifikacioniDokumentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesto">
+            <EntityTypeMapping TypeName="MasterEntities.Mesto">
+              <MappingFragment StoreEntitySet="Mesto">
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentifikacioniDokument">
+            <EntityTypeMapping TypeName="IsTypeOf(MasterEntities.IdentifikacioniDokument)">
+              <MappingFragment StoreEntitySet="IdentifikacioniDokument">
+                <ScalarProperty Name="VaziOd" ColumnName="VaziOd" />
+                <ScalarProperty Name="VaziDo" ColumnName="VaziDo" />
+                <ScalarProperty Name="MestoIzdavanjaId" ColumnName="MestoIzdavanjaId" />
+                <ScalarProperty Name="BrojIdentifikacionogDokumenta" ColumnName="BrojIdentifikacionogDokumenta" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

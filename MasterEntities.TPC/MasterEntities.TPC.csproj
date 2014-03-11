@@ -39,6 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IdentifikacioniDokument.cs">
+      <DependentUpon>MasterApplication2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mesto.cs">
+      <DependentUpon>MasterApplication2Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Osoba.cs">
       <DependentUpon>MasterApplication2Model.tt</DependentUpon>
     </Compile>
