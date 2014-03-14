@@ -39,13 +39,20 @@ namespace Common.Helpers
         Assembly currentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
             Assembly a = null;
-            if (dbConnection == DatabaseConnection.MasterApp1)
-                a = Assembly.LoadFrom("..\\..\\TPT\\MasterEntities.dll");
-            else if (dbConnection == DatabaseConnection.MasterApp2)
-                a = Assembly.LoadFrom("..\\..\\TPC\\MasterEntities.dll");
-            else if (dbConnection == DatabaseConnection.MasterApp3)
-                a = Assembly.LoadFrom("..\\..\\TPH\\MasterEntities.dll");
 
+            if (dAccess == DataAccess.EntityFramework)
+            {
+                if (dbConnection == DatabaseConnection.MasterApp1)
+                    a = Assembly.LoadFrom("..\\..\\TPT\\MasterEntities.dll");
+                else if (dbConnection == DatabaseConnection.MasterApp2)
+                    a = Assembly.LoadFrom("..\\..\\TPC\\MasterEntities.dll");
+                else if (dbConnection == DatabaseConnection.MasterApp3)
+                    a = Assembly.LoadFrom("..\\..\\TPH\\MasterEntities.dll");
+            }
+            else
+            {
+                a = Assembly.LoadFrom("..\\..\\ADO\\MasterEntities.dll");
+            }
             return a;
         }
 
