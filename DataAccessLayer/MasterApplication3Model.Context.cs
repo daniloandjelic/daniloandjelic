@@ -25,6 +25,8 @@ namespace MasterEntities
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<IdentifikacioniDokument> IdentifikacioniDokument { get; set; }
+        public DbSet<Mesto> Mesto { get; set; }
         public DbSet<Osoba> Osoba { get; set; }
     }
 }

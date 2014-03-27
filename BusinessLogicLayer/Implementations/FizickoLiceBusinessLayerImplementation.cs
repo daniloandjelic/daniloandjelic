@@ -68,6 +68,15 @@ namespace BusinessLogicLayer.Implementations
                     objToUpdate.IdentifikacioniDokument = null;
                 }
 
+                if (objToUpdate.Otac != null)
+                    objToUpdate.OtacId = objToUpdate.Otac.Id;
+
+                if (objToUpdate.Majka != null)
+                    objToUpdate.MajkaId = objToUpdate.Majka.Id;
+
+                objToUpdate.Majka = null;
+                objToUpdate.Otac = null;
+
                 flDal = new GenericDataAccessLayer<FizickoLice>();
                 flDal.Update(objToUpdate);
 

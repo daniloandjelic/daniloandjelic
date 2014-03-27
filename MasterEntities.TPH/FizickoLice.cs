@@ -20,5 +20,8 @@ namespace MasterEntities
         public string Pol { get; set; }
         public Nullable<long> OtacId { get; set; }
         public Nullable<long> MajkaId { get; set; }
+
+        public virtual FizickoLice Majka { get; set; }
+        public virtual FizickoLice Otac { get; set; }
     }
 }

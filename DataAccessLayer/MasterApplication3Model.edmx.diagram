@@ -5,11 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="765fcd0a01e84285a63c44d31ad4be76" Name="Diagram1">
-        <EntityTypeShape EntityType="MasterEntities.Osoba" Width="3" PointX="2.875" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MasterEntities.FizickoLice" Width="1.5" PointX="1.5" PointY="4.5" />
+        <EntityTypeShape EntityType="MasterEntities.IdentifikacioniDokument" Width="1.5" PointX="2.625" PointY="2.75" />
+        <EntityTypeShape EntityType="MasterEntities.Mesto" Width="1.5" PointX="0.5" PointY="2.375" />
+        <EntityTypeShape EntityType="MasterEntities.Osoba" Width="2.625" PointX="6.5" PointY="1" />
+        <AssociationConnector Association="MasterEntities.FK_IdentifikacioniDokument_Mesto" />
+        <AssociationConnector Association="MasterEntities.FK_Osoba_IdentifDokument" />
+        <EntityTypeShape EntityType="MasterEntities.FizickoLice" Width="1.5" PointX="5.125" PointY="6.375" />
         <InheritanceConnector EntityType="MasterEntities.FizickoLice" />
-        <EntityTypeShape EntityType="MasterEntities.PravnoLice" Width="1.5" PointX="6.75" PointY="4.5" />
-        <InheritanceConnector EntityType="MasterEntities.PravnoLice" />
+        <EntityTypeShape EntityType="MasterEntities.PravnoLice" Width="1.5" PointX="9.125" PointY="6.125" />
+        <InheritanceConnector EntityType="MasterEntities.PravnoLice" ManuallyRouted="false" >
+        </InheritanceConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
